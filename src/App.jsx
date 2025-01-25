@@ -1,7 +1,17 @@
-import { Routes, Route, Link } from 'react-router-dom'; // 나중에 react-router 사용을 대비해 미리 import해둠
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './pages/Layout';
 
 function App() {
-  return <div></div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* 라우터 내용 채우기 */}
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
