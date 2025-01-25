@@ -5,7 +5,10 @@ const Layout = () => {
   return (
     <div>
       <header>
-        <nav>{/* 헤더 안에 들어갈 내용 작성 */}</nav>
+        <nav>
+          <Link to="/colors">컬러 팔레트</Link>
+          <Link to="/typography">타이포그래피</Link>
+        </nav>
       </header>
       <main>
         <Outlet />
