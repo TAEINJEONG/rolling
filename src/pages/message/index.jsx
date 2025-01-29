@@ -1,6 +1,7 @@
 import './styles.css';
 import InputBox from './InputBox';
 import { useState } from 'react';
+import ProfileImg from './ProfileImg';
 
 const Message = () => {
   const [sender, setSender] = useState('');
@@ -21,6 +22,7 @@ const Message = () => {
 
   return (
     <form className="container max-w-[720px] mx-auto mt-[112px] flex flex-col ">
+      {/*sender 입력창*/}
       <label htmlFor="from-input" className="text-24-bold mb-3">
         From.
       </label>
@@ -30,6 +32,10 @@ const Message = () => {
         onBlur={handleOnBlur}
         isError={isError}
       />
+
+      {/*프로필 이미지*/}
+      <label className="text-24-bold mt-[50px] mb-3">프로필 이미지</label>
+      <ProfileImg />
     </form>
   );
 };
