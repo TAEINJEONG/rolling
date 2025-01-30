@@ -9,7 +9,7 @@ const InputBox = ({ value, onChange, onBlur, isError }) => {
         onChange={onChange}
         onBlur={onBlur}
         className={`py-3 px-4 h-[50px] rounded-lg border ${isError ? 'border-[#DC3A3A]' : 'border-[#CCCCCC]'}`}
-        maxLength="10"
+        maxLength="20"
       />
       {isError && <p className="text-[#DC3A3A]">값을 입력해주세요.</p>}
     </>
