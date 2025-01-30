@@ -1,11 +1,10 @@
 import './styles.css';
 import InputBox from './InputBox';
-import { useEffect, useState } from 'react';
 import ProfileImg from './ProfileImg';
 import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
+import { useEffect, useState } from 'react';
 
-// 선택된 이미지가 없으면 images[0] 이 profileImg
 const Message = () => {
   const [sender, setSender] = useState('');
   const [isError, setIsError] = useState(false);
