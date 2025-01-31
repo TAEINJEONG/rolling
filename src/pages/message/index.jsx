@@ -7,13 +7,11 @@ import { useEffect, useState } from 'react';
 import SelectMenu from './SelectMenu';
 
 const Message = () => {
-  const relationOptions = ['친구', '지인', '동료', '가족'];
-
   const [sender, setSender] = useState('');
   const [isError, setIsError] = useState(false);
   const [images, setImages] = useState([]);
   const [profileImg, setProfileImg] = useState(profilePreview);
-  const [selected, setSelected] = useState(relationOptions[1]);
+  const [selected, setSelected] = useState('지인');
 
   const handleInputChange = (e) => {
     setSender(e.target.value); // 공백 제거 후 상태 업데이트
@@ -38,6 +36,8 @@ const Message = () => {
     };
     getProfileImages();
   }, []);
+
+  const relationOptions = ['친구', '지인', '동료', '가족'];
 
   return (
     <form className="container max-w-[720px] mx-auto mt-[112px] flex flex-col ">
