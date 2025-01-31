@@ -4,7 +4,7 @@ import ProfileImg from './ProfileImg';
 import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
 import { useEffect, useState } from 'react';
-import SelectMenu from './SelectMenu';
+import SelectBox from './SelectBox';
 
 const Message = () => {
   const [sender, setSender] = useState('');
@@ -12,6 +12,8 @@ const Message = () => {
   const [images, setImages] = useState([]);
   const [profileImg, setProfileImg] = useState(profilePreview);
   const [selected, setSelected] = useState('지인');
+
+  const relationOptions = ['친구', '지인', '동료', '가족'];
 
   const handleInputChange = (e) => {
     setSender(e.target.value); // 공백 제거 후 상태 업데이트
@@ -37,8 +39,6 @@ const Message = () => {
     getProfileImages();
   }, []);
 
-  const relationOptions = ['친구', '지인', '동료', '가족'];
-
   return (
     <form className="container max-w-[720px] mx-auto mt-[112px] flex flex-col ">
       {/*sender 입력창*/}
@@ -58,7 +58,7 @@ const Message = () => {
 
       {/*상대와의 관계*/}
       <label className="text-24-bold mt-[50px] mb-3">상대와의 관계</label>
-      <SelectMenu options={relationOptions} selected={selected} setSelected={setSelected} />
+      <SelectBox options={relationOptions} selected={selected} setSelected={setSelected} />
     </form>
   );
 };
