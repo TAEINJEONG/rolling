@@ -1,4 +1,4 @@
-const InputBox = ({ value, onChange, onBlur, isError }) => {
+const InputWithError = ({ value, onChange, onBlur, isError }) => {
   return (
     <>
       <input
@@ -12,8 +12,9 @@ const InputBox = ({ value, onChange, onBlur, isError }) => {
         maxLength="20"
         placeholder="이름을 입력해주세요"
       />
+
       {isError && <p className="text-[#DC3A3A]">값을 입력해주세요.</p>}
     </>
   );
 };
-export default InputBox;
+export default InputWithError;

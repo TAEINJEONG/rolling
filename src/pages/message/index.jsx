@@ -1,10 +1,10 @@
 import './styles.css';
-import InputBox from './InputBox';
+import InputWithError from './InputWithError ';
 import ProfileImg from './ProfileImg';
 import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
+import Select from './Select';
 import { useEffect, useState } from 'react';
-import SelectBox from './SelectBox';
 
 const Message = () => {
   const [sender, setSender] = useState('');
@@ -45,7 +45,7 @@ const Message = () => {
       <label htmlFor="from-input" className="text-24-bold mb-3">
         From.
       </label>
-      <InputBox
+      <InputWithError
         value={sender}
         onChange={handleInputChange}
         onBlur={handleOnBlur}
@@ -58,7 +58,7 @@ const Message = () => {
 
       {/*상대와의 관계*/}
       <label className="text-24-bold mt-[50px] mb-3">상대와의 관계</label>
-      <SelectBox options={relationOptions} selected={selected} setSelected={setSelected} />
+      <Select options={relationOptions} selected={selected} setSelected={setSelected} />
     </form>
   );
 };
