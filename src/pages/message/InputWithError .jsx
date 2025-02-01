@@ -1,3 +1,5 @@
+import ErrorMessage from './ErrorMessage';
+
 const InputWithError = ({ value, onChange, onBlur, isError }) => {
   return (
     <>
@@ -13,7 +15,7 @@ const InputWithError = ({ value, onChange, onBlur, isError }) => {
         placeholder="이름을 입력해주세요"
       />
 
-      {isError && <p className="text-[#DC3A3A]">값을 입력해주세요.</p>}
+      {isError && <ErrorMessage text={'값을 입력해주세요.'} />}
     </>
   );
 };

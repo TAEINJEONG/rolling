@@ -10,6 +10,7 @@ const Message = () => {
   const [sender, setSender] = useState('');
   const [isError, setIsError] = useState(false);
   const [images, setImages] = useState([]);
+  const [loadingError, setLoadingError] = useState(false);
   const [profileImg, setProfileImg] = useState(profilePreview);
   const [selected, setSelected] = useState('지인');
 
@@ -30,10 +31,11 @@ const Message = () => {
   useEffect(() => {
     const getProfileImages = async () => {
       try {
-        const response = await api.getProfileImages('13-2', '9738');
+        const response = await api.getProfileImages();
         setImages(response.data.imageUrls);
+        setLoadingError(false);
       } catch (e) {
-        console.error(e);
+        setLoadingError(true);
       }
     };
     getProfileImages();
@@ -54,7 +56,12 @@ const Message = () => {
 
       {/*프로필 이미지*/}
       <label className="text-24-bold mt-[50px] mb-3">프로필 이미지</label>
-      <ProfileImg images={images} profileImg={profileImg} setProfileImg={setProfileImg} />
+      <ProfileImg
+        images={images}
+        profileImg={profileImg}
+        setProfileImg={setProfileImg}
+        loadingError={loadingError}
+      />
 
       {/*상대와의 관계*/}
       <label className="text-24-bold mt-[50px] mb-3">상대와의 관계</label>

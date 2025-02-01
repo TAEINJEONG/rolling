@@ -1,4 +1,6 @@
-const ProfileImg = ({ images, profileImg, setProfileImg }) => {
+import ErrorMessage from './ErrorMessage';
+
+const ProfileImg = ({ images, profileImg, setProfileImg, loadingError }) => {
   const filteredImgList = images
     .filter((_, index) => index >= 1) // index 0 제외
     .map((src) => (
@@ -18,7 +20,11 @@ const ProfileImg = ({ images, profileImg, setProfileImg }) => {
       />
       <div>
         <p className="text-[#555555] mb-3">프로필 이미지를 선택해주세요!</p>
-        <div className="flex">{filteredImgList}</div>
+        {loadingError ? (
+          <ErrorMessage text={'이미지를 불러오는데에 실패했습니다'} />
+        ) : (
+          <div className="flex">{filteredImgList}</div>
+        )}
       </div>
     </div>
   );
