@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 const Message = () => {
   const [sender, setSender] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [isValid, setIsValid] = useState(true);
   const [images, setImages] = useState([]);
   const [loadingError, setLoadingError] = useState(false);
   const [profileImg, setProfileImg] = useState(profilePreview);
@@ -18,13 +18,7 @@ const Message = () => {
 
   const handleInputChange = (e) => {
     setSender(e.target.value); // 공백 제거 후 상태 업데이트
-    setIsError(false);
-  };
-
-  const handleOnBlur = () => {
-    if (sender === '') {
-      setIsError(true);
-    }
+    setIsValid(true);
   };
 
   // 예시 프로필 이미지 요청
@@ -50,8 +44,8 @@ const Message = () => {
       <InputWithError
         value={sender}
         onChange={handleInputChange}
-        onBlur={handleOnBlur}
-        isError={isError}
+        onBlur={() => sender === '' && setIsValid(false)}
+        isValid={isValid}
       />
 
       {/*프로필 이미지*/}

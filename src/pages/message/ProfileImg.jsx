@@ -21,7 +21,7 @@ const ProfileImg = ({ images, profileImg, setProfileImg, loadingError }) => {
       <div>
         <p className="text-[#555555] mb-3">프로필 이미지를 선택해주세요!</p>
         {loadingError ? (
-          <ErrorMessage text={'이미지를 불러오는데에 실패했습니다'} />
+          <ErrorMessage text={'이미지를 불러오는 데에 실패했습니다'} />
         ) : (
           <div className="flex">{filteredImgList}</div>
         )}
