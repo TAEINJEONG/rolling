@@ -9,20 +9,20 @@ export const apiClient = axios.create({
 
 const apiRoutes = {
   // Background Images
-  backgroundImages: '/background-images',
+  backgroundImages: '/background-images/',
 
   // Profile Images
-  profileImages: '/profile-images',
+  profileImages: '/profile-images/',
 
   // Messages
-  messages: (team, messageId) => `/${team}/messages/${messageId}`,
+  messages: (team, messageId) => `/${team}/messages/${messageId}/`,
 
   // Recipients
   recipients: {
     base: (team, recipientId) =>
-      recipientId ? `/${team}/recipients/${recipientId}` : `/${team}/recipients`,
-    messages: (team, recipientId) => `/${team}/recipients/${recipientId}/messages`,
-    reactions: (team, recipientId) => `/${team}/recipients/${recipientId}/reactions`,
+      recipientId ? `/${team}/recipients/${recipientId}/` : `/${team}/recipients/`,
+    messages: (team, recipientId) => `/${team}/recipients/${recipientId}/messages/`,
+    reactions: (team, recipientId) => `/${team}/recipients/${recipientId}/reactions/`,
   },
 };
 
