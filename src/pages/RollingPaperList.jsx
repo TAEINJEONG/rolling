@@ -8,7 +8,7 @@ const RollingPaperList = () => {
   const [popularIndex, setPopularIndex] = useState(0);
   const [recentIndex, setRecentIndex] = useState(0);
 
-  const itemsPerView = 4; // 한 번에 보여질 카드 개수
+  const itemsPerView = 4;
 
   const handlePopularNext = () => {
     setPopularIndex((prev) => Math.min(prev + 1, popularRollingPapers.length - itemsPerView));
@@ -32,11 +32,9 @@ const RollingPaperList = () => {
         const response = await api.getRecipients('13-2');
         const papers = response.data.results;
 
-        // 좋아요 수 기준으로 정렬하여 인기 롤링 페이퍼 설정
         const sortedByReactionCount = [...papers].sort((a, b) => b.reactionCount - a.reactionCount);
         setPopularRollingPapers(sortedByReactionCount);
 
-        // 생성일 기준으로 정렬하여 최근 롤링 페이퍼 설정
         const sortedByDate = [...papers].sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
