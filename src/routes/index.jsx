@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../pages/Layout';
-import Test from '../pages/Test';
 import Home from '../pages/Home';
 
 const AppRouter = () => {
