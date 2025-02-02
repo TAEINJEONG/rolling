@@ -11,6 +11,7 @@ const AppRouter = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/rolling-paper" element={<RollingPaperList />} />
+          <Route path="/post/:id/message" element={<Message />} />
         </Route>
       </Routes>
     </BrowserRouter>
