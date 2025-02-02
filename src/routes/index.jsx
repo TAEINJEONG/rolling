@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../pages/Layout';
 import Home from '../pages/Home';
 import RollingPaperList from '../pages/RollingPaperList';
+import Message from '../pages/message';
 
 const AppRouter = () => {
   return (
