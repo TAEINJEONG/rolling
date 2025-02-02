@@ -49,7 +49,7 @@ const RollingPaperList = () => {
   }, []);
 
   return (
-    <div className="mt-[50px] flex flex-col gap-[50px]">
+    <div className="mt-[50px] flex flex-col gap-[50px] overflow-hidden">
       <RollingPaperCarousel
         title="인기 롤링 페이퍼 🔥"
         papers={popularRollingPapers}

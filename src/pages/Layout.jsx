@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div>
       <header>헤더입니당</header>
-      <main className="flex justify-center">
+      <main className="flex xl:justify-center max-xl:px-[24px] max-md:px-[20px]">
         <Outlet />
       </main>
       <footer></footer>
