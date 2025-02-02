@@ -11,16 +11,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@tailwindcss/vite": "^4.0.1",
+=======
+>>>>>>> 604993c6f7a4312cbab1de9a61a77938939f2383
     "axios": "^1.7.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.1.3",
-    "tailwindcss": "^4.0.0"
+    "react-router-dom": "^7.1.4",
+    "tailwindcss": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
-    "@tailwindcss/vite": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.1",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
