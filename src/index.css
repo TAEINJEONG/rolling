@@ -137,4 +137,7 @@
   --text-12-regular--line-height: 18px;
   --text-12-regular--font-weight: 400;
   --text-12-regular--letter-spacing: -0.6px;
+
+  --container-tablet: 1024px;
+  --container-zero: 0px;
 }
