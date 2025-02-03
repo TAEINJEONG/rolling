@@ -6,7 +6,7 @@ import HeaderService from './HeaderService';
 const Layout = () => {
   return (
     <div className="bg-beige-200 h-full">
-      <div className="m-auto h-full">
+      <div className="m-auto h-screen">
         <div>
           <header className="bg-green-100">
             <nav>
@@ -14,7 +14,7 @@ const Layout = () => {
               <Link to="/typography">타이포그래피</Link>
             </nav>
           </header>
-          <main className="bg-beige-200 h-full">
+          <main className="bg-beige-200">
             <HeaderService />
             <Card2 />
             <Outlet />
