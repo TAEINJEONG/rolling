@@ -13,10 +13,12 @@ const Message = () => {
   const [images, setImages] = useState([]);
   const [loadingError, setLoadingError] = useState(false);
   const [profileImg, setProfileImg] = useState(profilePreview);
-  const [selected, setSelected] = useState('지인');
+  const [selectedRelation, setSelectedRelation] = useState('지인');
   const [editorContent, setEditorContent] = useState('');
+  const [selectedFont, setSelectedFont] = useState('Noto Sans');
 
   const relationOptions = ['친구', '지인', '동료', '가족'];
+  const fontOptions = ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체'];
 
   const handleInputChange = (e) => {
     setSender(e.target.value); // 공백 제거 후 상태 업데이트
@@ -60,14 +62,20 @@ const Message = () => {
         loadingError={loadingError}
       />
 
-      {/*상대와의 관계*/}
+      {/*관계 선택*/}
       <label className="text-24-bold mt-[50px] mb-3">상대와의 관계</label>
-      <Select options={relationOptions} selected={selected} setSelected={setSelected} />
+      <Select
+        options={relationOptions}
+        selected={selectedRelation}
+        setSelected={setSelectedRelation}
+      />
 
+      {/*내용 입력 에디터*/}
       <label className="text-24-bold mt-[50px] mb-3">내용을 입력해 주세요</label>
       <Editor editorContent={editorContent} setEditorContent={setEditorContent} />
 
       <label className="text-24-bold mt-[50px] mb-3">폰트 선택</label>
+      <Select options={fontOptions} selected={selectedFont} setSelected={setSelectedFont} />
     </form>
   );
 };

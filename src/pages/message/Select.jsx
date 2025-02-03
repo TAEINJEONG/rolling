@@ -2,7 +2,7 @@ import arrowDown from '../../assets/images/arrow-down.svg';
 import arrowUp from '../../assets/images/arrow-up.svg';
 import { useState } from 'react';
 
-const SelectBox = ({ options, selected, setSelected }) => {
+const Select = ({ options, selected, setSelected }) => {
   const [isOpen, setIsOpen] = useState(false); // Select Menu 열림 상태
 
   // 옵션 선택 시 실행
@@ -45,4 +45,4 @@ const SelectBox = ({ options, selected, setSelected }) => {
     </>
   );
 };
-export default SelectBox;
+export default Select;
