@@ -31,7 +31,7 @@ const EmojiMenu = () => {
           className="flex jusity-center items-center border border-gray-300 rounded-[6px] px-[8px] py-[6px] md:px-[16px] cursor-pointer"
           onClick={handleToggle}
         >
-          <img className="md:mr-[4px]" src={AddEmoji}></img>
+          <img className="md:mr-[4px]" src={AddEmoji} />
           <span className="hidden md:block">추가</span>
         </button>
 

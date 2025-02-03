@@ -13,11 +13,11 @@ const CardsContainer = () => {
     <div
       className="
       md:max-w-[1248px] m-auto p-[24px]
-      pt-[24px] pr-[20px] pl-[20px] pb-[38px]
-      md:pt-[93px] md:pr-[24px] md:pl-[24px] md:pb-[91px]
+      pt-[24px] px-[20px] pb-[38px]
+      md:pt-[93px] md:px-[24px] md:pb-[91px]
       md:pt-[113px]
       w-full grid grid-cols-1 grid-rows-6 gap-y-4
-      sm:gap[16px] md:w-full md:grid-cols-2 md:grid-cols:3 md:gap-x-4 md:gap-y-4 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-[24px] lg:gap-y-[28px]"
+      sm:gap-[16px] md:w-full md:grid-cols-2 md:grid-cols:3 md:gap-x-4 md:gap-y-4 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-[24px] lg:gap-y-[28px]"
     >
       {cards.map((title, index) => (
         <Card key={index} title={title} />

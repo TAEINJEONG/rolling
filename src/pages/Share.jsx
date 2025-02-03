@@ -36,15 +36,11 @@ const Share = () => {
 
         {/* 드롭다운 메뉴 */}
         {isOpen && (
-          <div className="absolute right-0 mt-2 w-40 bg-white border text-left border-gray-300 rounded-lg shadow-lg z-1">
-            <ul className="py-2">
-              <li>
-                <Kakao />
-              </li>
-              <li className="px-4 py-[12px] hover:bg-gray-100 cursor-pointer text-16-regular">
-                URL 공유
-              </li>
-            </ul>
+          <div className="absolute right-0 mt-2 w-40 bg-white border text-left border-gray-300 rounded-lg shadow-lg z-1 overflow-hidden">
+            <Kakao />
+            <button className="px-4 py-[12px] w-full text-left hover:bg-gray-100 cursor-pointer text-16-regular">
+              URL 공유
+            </button>
           </div>
         )}
       </div>

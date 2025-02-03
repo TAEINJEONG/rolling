@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import Card2 from './Card2';
+import Card from './Card';
 import HeaderService from './HeaderService';
 
 const Layout = () => {
@@ -16,7 +16,7 @@ const Layout = () => {
           </header>
           <main className="bg-beige-200">
             <HeaderService />
-            <Card2 />
+            <Card />
             <Outlet />
           </main>
           <footer></footer>
