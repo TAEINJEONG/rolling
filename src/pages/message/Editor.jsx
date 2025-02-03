@@ -1,6 +1,7 @@
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './editor.css'; // custom style
+import { useCallback } from 'react';
 
 // Toolbar options
 const modules = {
@@ -13,9 +14,12 @@ const modules = {
 };
 
 const Editor = ({ editorContent, setEditorContent }) => {
-  const handleEditorChange = (content) => {
-    setEditorContent(content);
-  };
+  const handleEditorChange = useCallback(
+    (content) => {
+      setEditorContent(content);
+    },
+    [setEditorContent]
+  );
 
   return (
     <div>
