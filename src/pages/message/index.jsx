@@ -4,6 +4,7 @@ import ProfileImg from './ProfileImg';
 import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
 import Select from './Select';
+import QuillEditor from './QuillEditor';
 import { useEffect, useState } from 'react';
 
 const Message = () => {
@@ -60,6 +61,9 @@ const Message = () => {
       {/*상대와의 관계*/}
       <label className="text-24-bold mt-[50px] mb-3">상대와의 관계</label>
       <Select options={relationOptions} selected={selected} setSelected={setSelected} />
+
+      <label className="text-24-bold mt-[50px] mb-3">내용을 입력해 주세요</label>
+      <QuillEditor />
     </form>
   );
 };
