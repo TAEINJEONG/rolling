@@ -1,5 +1,5 @@
 import './styles.css';
-import InputWithError from './InputWithError ';
+import InputWithError from './InputWithError';
 import ProfileImg from './ProfileImg';
 import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
@@ -36,7 +36,7 @@ const Message = () => {
   }, []);
 
   return (
-    <form className="container max-w-[720px] mx-auto mt-[112px] flex flex-col ">
+    <form className="container max-w-[720px] mx-auto mt-[47px] flex flex-col ">
       {/*sender 입력창*/}
       <label htmlFor="from-input" className="text-24-bold mb-3">
         From.
