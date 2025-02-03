@@ -23,7 +23,7 @@ const SelectBox = ({ options, selected, setSelected }) => {
 
   return (
     <>
-      <div className="relative w-[320px] h-[50px] ">
+      <div className="relative w-[320px] h-[50px]">
         {/*Select Box*/}
         <div
           className="w-full h-full py-3 px-4 border border-[#CCCCCC] rounded-lg cursor-pointer"
@@ -37,7 +37,7 @@ const SelectBox = ({ options, selected, setSelected }) => {
 
         {/*Select Menu*/}
         {isOpen && (
-          <ul className="absolute left -0 mt-1.5 w-full py-1.5 border border-[#CCCCCC] rounded-lg cursor-pointer shadow-md">
+          <ul className="absolute left -0 mt-1.5 w-full py-1.5 border border-[#CCCCCC] bg-white rounded-lg cursor-pointer shadow-md z-10">
             {relationList}
           </ul>
         )}

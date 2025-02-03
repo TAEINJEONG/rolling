@@ -4,7 +4,7 @@ import ProfileImg from './ProfileImg';
 import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
 import Select from './Select';
-import QuillEditor from './QuillEditor';
+import Editor from './Editor';
 import { useEffect, useState } from 'react';
 
 const Message = () => {
@@ -14,6 +14,7 @@ const Message = () => {
   const [loadingError, setLoadingError] = useState(false);
   const [profileImg, setProfileImg] = useState(profilePreview);
   const [selected, setSelected] = useState('지인');
+  const [editorContent, setEditorContent] = useState('');
 
   const relationOptions = ['친구', '지인', '동료', '가족'];
 
@@ -31,6 +32,7 @@ const Message = () => {
         setLoadingError(false);
       } catch (e) {
         setLoadingError(true);
+        console.error(e);
       }
     };
     getProfileImages();
@@ -63,7 +65,9 @@ const Message = () => {
       <Select options={relationOptions} selected={selected} setSelected={setSelected} />
 
       <label className="text-24-bold mt-[50px] mb-3">내용을 입력해 주세요</label>
-      <QuillEditor />
+      <Editor editorContent={editorContent} setEditorContent={setEditorContent} />
+
+      <label className="text-24-bold mt-[50px] mb-3">폰트 선택</label>
     </form>
   );
 };
