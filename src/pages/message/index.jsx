@@ -1,4 +1,3 @@
-import './styles.css';
 import InputWithError from './InputWithError';
 import ProfileImg from './ProfileImg';
 import api from '../../api/axios';
