@@ -38,7 +38,16 @@ const Editor = ({ editorContent, setEditorContent, selectedFont }) => {
   }, [selectedFont]);
 
   const handleEditorChange = (content) => {
-    setEditorContent(content);
+    let modifiedContent = content;
+
+    // 폰트가 선택되지 않은 경우 <span class="ql-font-NotoSans"> 를 자동 추가
+    if (!content.includes('ql-font')) {
+      modifiedContent = content.replace(
+        /<p>(.*?)<\/p>/g,
+        '<p><span class="ql-font-NotoSans">$1</span></p>'
+      );
+    }
+    setEditorContent(modifiedContent);
   };
 
   return (
