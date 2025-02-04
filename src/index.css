@@ -3,6 +3,7 @@
 html,
 body {
   height: 100%;
+  font-family: var(--font-pre);
 }
 
 @theme {
@@ -51,7 +52,7 @@ body {
 
   /* 기타 색상 */
   --color-white: oklch(100% 0 0);
-  --color-balck: oklch(0% 0 0);
+  --color-black: oklch(0% 0 0);
   --color-error: oklch(59.42% 0.199 25.67);
   --color-surface: oklch(97.96% 0.0095 273.36);
 
