@@ -1,14 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 import AddEmoji from '../assets/images/add-emoji.svg';
+import api from '../api/axios';
 
-const EmojiMenu = () => {
+const EmojiMenu = ({ id, onUpdate }) => {
   const [isActive, setIsActive] = useState(false);
   const menuRef = useRef(null);
 
   const handleToggle = () => {
-    // 이모지 토글
     setIsActive((prev) => !prev);
+  };
+
+  const emojiClick = async (emojiObject) => {
+    const reactionData = {
+      emoji: emojiObject.emoji,
+      type: 'increase',
+    };
+
+    try {
+      await api.postRecipientReaction('13-2', id, reactionData);
+      onUpdate();
+    } catch (e) {
+      console.error('API 호출 중 오류 발생:', e);
+    } finally {
+      setIsActive(false);
+    }
   };
 
   useEffect(() => {
@@ -37,7 +53,7 @@ const EmojiMenu = () => {
 
         {isActive && (
           <div className="absolute -right-20 md:right-0 mt-2 z-1">
-            <EmojiPicker open={isActive} />
+            <EmojiPicker open={isActive} onEmojiClick={emojiClick} />
           </div>
         )}
       </div>

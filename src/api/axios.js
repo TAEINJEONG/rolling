@@ -20,8 +20,8 @@ const apiRoutes = {
   // Recipients
   getRecipients: (team) => `/${team}/recipients/`,
   postRecipient: (team) => `/${team}/recipients/`,
-  getRecipient: (team, recipientId) => `/${team}/recipients/${recipientId}`,
-  deleteRecipient: (team, recipientId) => `/${team}/recipients/${recipientId}`,
+  getRecipient: (team, recipientId) => `/${team}/recipients/${recipientId}/`,
+  deleteRecipient: (team, recipientId) => `/${team}/recipients/${recipientId}/`,
   getRecipientMessages: (team, recipientId) => `/${team}/recipients/${recipientId}/messages/`,
   postRecipientMessage: (team, recipientId) => `/${team}/recipients/${recipientId}/messages/`,
   getRecipientReactions: (team, recipientId) => `/${team}/recipients/${recipientId}/reactions/`,

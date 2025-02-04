@@ -34,7 +34,6 @@ const Share = () => {
           <img src={ShareIcon} />
         </button>
 
-        {/* 드롭다운 메뉴 */}
         {isOpen && (
           <div className="absolute right-0 mt-2 w-40 bg-white border text-left border-gray-300 rounded-lg shadow-lg z-1 overflow-hidden">
             <Kakao />
