@@ -14,12 +14,9 @@ const modules = {
 };
 
 const Editor = ({ editorContent, setEditorContent }) => {
-  const handleEditorChange = useCallback(
-    (content) => {
-      setEditorContent(content);
-    },
-    [setEditorContent]
-  );
+  const handleEditorChange = (content) => {
+    setEditorContent(content);
+  };
 
   return (
     <div>

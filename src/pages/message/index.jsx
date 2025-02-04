@@ -66,7 +66,7 @@ const Message = () => {
       <Select
         options={relationOptions}
         selected={selectedRelation}
-        setSelected={setSelectedRelation}
+        onSelect={setSelectedRelation}
       />
 
       {/*내용 입력 에디터*/}
@@ -74,7 +74,7 @@ const Message = () => {
       <Editor editorContent={editorContent} setEditorContent={setEditorContent} />
 
       <label className="text-24-bold mt-[50px] mb-3">폰트 선택</label>
-      <Select options={fontOptions} selected={selectedFont} setSelected={setSelectedFont} />
+      <Select options={fontOptions} selected={selectedFont} onSelect={setSelectedFont} />
     </form>
   );
 };

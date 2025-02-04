@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import '../../index.css';
 
 .ql-toolbar.ql-snow {
   @apply bg-[#eeeeee] rounded-t-lg;

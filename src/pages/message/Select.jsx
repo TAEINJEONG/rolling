@@ -2,12 +2,12 @@ import arrowDown from '../../assets/images/arrow-down.svg';
 import arrowUp from '../../assets/images/arrow-up.svg';
 import { useState } from 'react';
 
-const Select = ({ options, selected, setSelected }) => {
+const Select = ({ options, selected, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false); // Select Menu 열림 상태
 
   // 옵션 선택 시 실행
   const handleOptionSelect = (option) => {
-    setSelected(option);
+    onSelect(option);
     setIsOpen(false); // Select Menu 닫기
   };
 
@@ -36,7 +36,7 @@ const Select = ({ options, selected, setSelected }) => {
 
       {/*Select Menu*/}
       {isOpen && (
-        <ul className="absolute left -0 mt-1.5 w-full py-1.5 border border-[#CCCCCC] bg-white rounded-lg cursor-pointer shadow-md z-10">
+        <ul className="absolute left-0 mt-1.5 w-full py-1.5 border border-[#CCCCCC] bg-white rounded-lg cursor-pointer shadow-md z-10">
           {relationList}
         </ul>
       )}
