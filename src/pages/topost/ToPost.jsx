@@ -24,7 +24,6 @@ function ToPost() {
   const [error, setError] = useState(false);
 
   //컬러 선택스타일
-  // eslint-disable-next-line react/prop-types
   const ColorOption = ({ color, selected, onClick }) => {
     return (
       <div
@@ -42,7 +41,6 @@ function ToPost() {
   };
 
   //컬러 선택
-  // eslint-disable-next-line react/prop-types
   const ColorSelector = ({ selectedColor, setSelectedColor }) => {
     return (
       <div className="flex gap-4 mt-4">
@@ -58,7 +56,6 @@ function ToPost() {
     );
   };
   //이미지 선택 스타일
-  // eslint-disable-next-line react/prop-types
   const ImageOption = ({ src, selected, onClick }) => {
     return (
       <div
@@ -88,21 +85,21 @@ function ToPost() {
   };
 
   //페이지 생성
-  // const createRolling = async (event) => {
-  //   event.preventDefault();
+  const createRolling = async (event) => {
+    event.preventDefault();
 
-  //   const NEW_PAGE = {
-  //     name: post,
-  //     backgroundColor: selectedTab === "color" ? selectedColor : "beige",
-  //     backgroundImageURL: selectedTab === "image" ? selectedImage : null,
-  //   };
+    const NEW_PAGE = {
+      name: post,
+      backgroundColor: selectedTab === "color" ? selectedColor : "beige",
+      backgroundImageURL: selectedTab === "image" ? selectedImage : null,
+    };
 
-  //   try {
-  //     const response = await api.postRecipient("13-2", NEW_PAGE);
-  //   } catch (error) {
-  //     console.error("페이지 생성 실패:", error);
-  //   }
-  // };
+    try {
+      const response = await api.postRecipient("13-2", NEW_PAGE);
+    } catch (error) {
+      console.error("페이지 생성 실패:", error);
+    }
+  };
   //API를 통해 이미지 받아오기
   useEffect(() => {
     const fetchImages = async () => {
@@ -118,7 +115,6 @@ function ToPost() {
   return (
     <div className="flex flex-col items-start bg-white min-h-screen p-10">
       <form
-        // eslint-disable-next-line no-undef
         onSubmit={createRolling}
         className="w-full px-10 py-10 bg-white rounded-lg shadow-md text-left"
       >
