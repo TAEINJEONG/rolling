@@ -9,57 +9,55 @@ export const apiClient = axios.create({
 
 const apiRoutes = {
   // Background Images
-  getBackgroundImages: '/background-images/',
+  backgroundImages: '/background-images/',
+
   // Profile Images
-  getProfileImages: '/profile-images/',
+  profileImages: '/profile-images/',
+
   // Messages
-  getMessages: (team, messageId) => `/${team}/messages/${messageId}/`,
-  putMessage: (team, messageId) => `/${team}/messages/${messageId}/`,
-  patchMessage: (team, messageId) => `/${team}/messages/${messageId}/`,
-  deleteMessage: (team, messageId) => `/${team}/messages/${messageId}/`,
+  messages: (team, messageId) => `/${team}/messages/${messageId}/`,
+
   // Recipients
-  getRecipients: (team) => `/${team}/recipients/`,
-  postRecipient: (team) => `/${team}/recipients/`,
-  getRecipient: (team, recipientId) => `/${team}/recipients/${recipientId}/`,
-  deleteRecipient: (team, recipientId) => `/${team}/recipients/${recipientId}/`,
-  getRecipientMessages: (team, recipientId) => `/${team}/recipients/${recipientId}/messages/`,
-  postRecipientMessage: (team, recipientId) => `/${team}/recipients/${recipientId}/messages/`,
-  getRecipientReactions: (team, recipientId) => `/${team}/recipients/${recipientId}/reactions/`,
-  postRecipientReaction: (team, recipientId) => `/${team}/recipients/${recipientId}/reactions/`,
+  recipients: {
+    base: (team, recipientId) =>
+      recipientId ? `/${team}/recipients/${recipientId}/` : `/${team}/recipients/`,
+    messages: (team, recipientId) => `/${team}/recipients/${recipientId}/messages/`,
+    reactions: (team, recipientId) => `/${team}/recipients/${recipientId}/reactions/`,
+  },
 };
 
 const api = {
   // Background Images
-  getBackgroundImages: () => apiClient.get(apiRoutes.getBackgroundImages),
+  getBackgroundImages: () => apiClient.get(apiRoutes.backgroundImages),
 
   // Profile Images
-  getProfileImages: () => apiClient.get(apiRoutes.getProfileImages),
+  getProfileImages: () => apiClient.get(apiRoutes.profileImages),
 
   // Messages
-  getMessages: (team, messageId) => apiClient.get(apiRoutes.getMessages(team, messageId)),
-  putMessage: (team, messageId, data) => apiClient.put(apiRoutes.putMessage(team, messageId), data),
-  patchMessage: (team, messageId, data) =>
-    apiClient.patch(apiRoutes.patchMessage(team, messageId), data),
-  deleteMessage: (team, messageId) => apiClient.delete(apiRoutes.deleteMessage(team, messageId)),
+  getMessages: (team, messageId) => apiClient.get(apiRoutes.messages(team, messageId)),
+  putMessages: (team, messageId, data) => apiClient.put(apiRoutes.messages(team, messageId), data),
+  patchMessages: (team, messageId, data) =>
+    apiClient.patch(apiRoutes.messages(team, messageId), data),
+  deleteMessages: (team, messageId) => apiClient.delete(apiRoutes.messages(team, messageId)),
 
   // Recipients
-  getRecipients: (team) => apiClient.get(apiRoutes.getRecipients(team)),
-  postRecipient: (team, data) => apiClient.post(apiRoutes.postRecipient(team), data),
-  getRecipient: (team, recipientId) => apiClient.get(apiRoutes.getRecipient(team, recipientId)),
-  deleteRecipient: (team, recipientId) =>
-    apiClient.delete(apiRoutes.deleteRecipient(team, recipientId)),
+  getRecipients: (team) => apiClient.get(apiRoutes.recipients.base(team)),
+  postRecipients: (team, data) => apiClient.post(apiRoutes.recipients.base(team), data),
+  getRecipients: (team, recipientId) => apiClient.get(apiRoutes.recipients.base(team, recipientId)),
+  deleteRecipients: (team, recipientId) =>
+    apiClient.delete(apiRoutes.recipients.base(team, recipientId)),
 
   // Recipient Messages
-  getRecipientMessages: (team, recipientId) =>
-    apiClient.get(apiRoutes.getRecipientMessages(team, recipientId)),
-  postRecipientMessage: (team, recipientId, data) =>
-    apiClient.post(apiRoutes.postRecipientMessage(team, recipientId), data),
+  getRecipientsMessages: (team, recipientId) =>
+    apiClient.get(apiRoutes.recipients.messages(team, recipientId)),
+  postRecipientsMessages: (team, recipientId, data) =>
+    apiClient.post(apiRoutes.recipients.messages(team, recipientId), data),
 
   // Recipient Reactions
-  getRecipientReactions: (team, recipientId) =>
-    apiClient.get(apiRoutes.getRecipientReactions(team, recipientId)),
-  postRecipientReaction: (team, recipientId, data) =>
-    apiClient.post(apiRoutes.postRecipientReaction(team, recipientId), data),
+  getRecipientsReactions: (team, recipientId) =>
+    apiClient.get(apiRoutes.recipients.reactions(team, recipientId)),
+  postRecipientsReactions: (team, recipientId, data) =>
+    apiClient.post(apiRoutes.recipients.reactions(team, recipientId), data),
 };
 
 export default api;
