@@ -71,7 +71,11 @@ const Message = () => {
 
       {/*내용 입력 에디터*/}
       <label className="text-24-bold mt-[50px] mb-3">내용을 입력해 주세요</label>
-      <Editor editorContent={editorContent} setEditorContent={setEditorContent} />
+      <Editor
+        editorContent={editorContent}
+        setEditorContent={setEditorContent}
+        selectedFont={selectedFont}
+      />
 
       <label className="text-24-bold mt-[50px] mb-3">폰트 선택</label>
       <Select options={fontOptions} selected={selectedFont} onSelect={setSelectedFont} />

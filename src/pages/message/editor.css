@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
+@import url('https://cdn.jsdelivr.net/gh/fonts-archive/NanumSonPyeonJiCe/NanumSonPyeonJiCe.css');
 @import '../../index.css';
 
 .ql-toolbar.ql-snow {
@@ -10,4 +13,21 @@
 
 .ql-editor {
   @apply text-base;
+  font-family: 'Noto Sans';
+}
+
+.ql-font-NotoSans {
+  font-family: 'Noto Sans';
+}
+
+.ql-font-Pretendard {
+  font-family: 'Pretendard';
+}
+
+.ql-font-NanumMyeongjo {
+  font-family: 'Nanum Myeongjo';
+}
+
+.ql-font-NanumSonPyeonJiCe {
+  font-family: 'NanumSonPyeonJiCe';
 }
