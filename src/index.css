@@ -1,68 +1,148 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import 'tailwindcss';
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+html,
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100%;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+@theme {
+  /* 보라색 */
+  --color-purple-100: oklch(96.57% 0.021561706019579917 309.56363981152464);
+  --color-purple-200: oklch(91.23% 0.0548567911964005 307.7948540248923);
+  --color-purple-300: oklch(83.97% 0.1024722697048965 307.0935806099342);
+  --color-purple-400: oklch(75.6% 0.1547 305.84);
+  --color-purple-500: oklch(63.81% 0.2389 303.14);
+  --color-purple-600: oklch(58.33% 0.2712 300.1);
+  --color-purple-700: oklch(53.05% 0.2698 298.32);
+  --color-purple-800: oklch(46.69% 0.2498 296.13);
+  --color-purple-900: oklch(39.31% 0.2126 295.96);
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+  /* 베이지 */
+  --color-beige-100: oklch(96.03% 0.0377 81.52);
+  --color-beige-200: oklch(92.41% 0.0751 82.4);
+  --color-beige-300: oklch(86.13% 0.1062 69.25);
+  --color-beige-400: oklch(81.49% 0.1304 61.35);
+  --color-beige-500: oklch(74.6% 0.1718 51.74);
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  /* 파랑 */
+  --color-blue-100: oklch(95.91% 0.02416295760414825 230.4255433176412);
+  --color-blue-200: oklch(89.24% 0.0642 231.46);
+  --color-blue-300: oklch(82.61% 0.1047 232.82);
+  --color-blue-400: oklch(74.69% 0.1489 237.52);
+  --color-blue-500: oklch(68.85% 0.1738 245.15);
+
+  /* 초록 */
+  --color-green-100: oklch(96.31% 0.0475 137.59);
+  --color-green-200: oklch(93.1% 0.0767 137.61);
+  --color-green-300: oklch(84.34% 0.1461 137.94);
+  --color-green-400: oklch(76.04% 0.2118 138.81);
+  --color-green-500: oklch(63.36% 0.2066 140.61);
+
+  /* 회색 */
+  --color-gray-100: oklch(97.31% 0 0);
+  --color-gray-200: oklch(94.91% 0 0);
+  --color-gray-300: oklch(84.52% 0 0);
+  --color-gray-400: oklch(68.3% 0 0);
+  --color-gray-500: oklch(44.95% 0 0);
+  --color-gray-600: oklch(40.91% 0 0);
+  --color-gray-700: oklch(34.85% 0 0);
+  --color-gray-800: oklch(28.91% 0 0);
+  --color-gray-900: oklch(20.9% 0 0);
+
+  /* 기타 색상 */
+  --color-white: oklch(100% 0 0);
+  --color-balck: oklch(0% 0 0);
+  --color-error: oklch(59.42% 0.199 25.67);
+  --color-surface: oklch(97.96% 0.0095 273.36);
+
+  /* 폰트 설정 */
+
+  --font-pre: pretendard;
+
+  /* text-28-bold */
+  --text-28-bold: 28px;
+  --text-28-bold--line-height: 42px;
+  --text-28-bold--font-weight: 700;
+  --text-28-bold--letter-spacing: -2.8px;
+
+  /* text-24-bold */
+  --text-24-bold: 24px;
+  --text-24-bold--line-height: 36px;
+  --text-24-bold--font-weight: 700;
+  --text-24-bold--letter-spacing: -2.4px;
+
+  /* text-24-regular */
+  --text-24-regular: 24px;
+  --text-24-regular--line-height: 36px;
+  --text-24-regular--font-weight: 400;
+  --text-24-regular--letter-spacing: -2.4px;
+
+  /* text-20-bold */
+  --text-20-bold: 20px;
+  --text-20-bold--line-height: 30px;
+  --text-20-bold--font-weight: 700;
+  --text-20-bold--letter-spacing: -2px;
+
+  /* text-20-regular */
+  --text-20-regular: 20px;
+  --text-20-regular--line-height: 30px;
+  --text-20-regular--font-weight: 400;
+  --text-20-regular--letter-spacing: -2px;
+
+  /* text-18-bold */
+  --text-18-bold: 18px;
+  --text-18-bold--line-height: 28px;
+  --text-18-bold--font-weight: 700;
+  --text-18-bold--letter-spacing: -1.8px;
+
+  /* text-18-regular */
+  --text-18-regular: 18px;
+  --text-18-regular--line-height: 28px;
+  --text-18-regular--font-weight: 400;
+  --text-18-regular--letter-spacing: -1.8px;
+
+  /* text-16-bold */
+  --text-16-bold: 16px;
+  --text-16-bold--line-height: 26px;
+  --text-16-bold--font-weight: 700;
+  --text-16-bold--letter-spacing: -1.6px;
+
+  /* text-16-regular */
+  --text-16-regular: 16px;
+  --text-16-regular--line-height: 26px;
+  --text-16-regular--font-weight: 400;
+  --text-16-regular--letter-spacing: -1.6px;
+
+  /* text-15-bold */
+  --text-15-bold: 15px;
+  --text-15-bold--line-height: 22px;
+  --text-15-bold--font-weight: 700;
+  --text-15-bold--letter-spacing: -1.5px;
+
+  /* text-15-regular */
+  --text-15-regular: 15px;
+  --text-15-regular--line-height: 22px;
+  --text-15-regular--font-weight: 400;
+  --text-15-regular--letter-spacing: -1.5px;
+
+  /* text-14-bold */
+  --text-14-bold: 14px;
+  --text-14-bold--line-height: 20px;
+  --text-14-bold--font-weight: 700;
+  --text-14-bold--letter-spacing: -0.7px;
+
+  /* text-14-regular */
+  --text-14-regular: 14px;
+  --text-14-regular--line-height: 20px;
+  --text-14-regular--font-weight: 400;
+  --text-14-regular--letter-spacing: -0.7px;
+
+  /* text-12-regular */
+  --text-12-regular: 12px;
+  --text-12-regular--line-height: 18px;
+  --text-12-regular--font-weight: 400;
+  --text-12-regular--letter-spacing: -0.6px;
+
+  --container-tablet: 1024px;
+  --container-zero: 0px;
 }
