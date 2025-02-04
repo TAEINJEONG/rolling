@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+html,
+body {
+  height: 100%;
+}
+
 @theme {
   /* 보라색 */
   --color-purple-100: oklch(96.57% 0.021561706019579917 309.56363981152464);
@@ -137,4 +142,7 @@
   --text-12-regular--line-height: 18px;
   --text-12-regular--font-weight: 400;
   --text-12-regular--letter-spacing: -0.6px;
+
+  --container-tablet: 1024px;
+  --container-zero: 0px;
 }
