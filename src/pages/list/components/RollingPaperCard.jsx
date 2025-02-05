@@ -1,6 +1,9 @@
 const RollingPaperCard = ({ paper }) => {
   return (
-    <div className="w-[275px] h-[260px] max-md:w-[206px] max-md:h-[232px]" key={paper.id}>
+    <div
+      className="w-[208px] h-[232px] md:w-[275px] md:h-[260px] bg-amber-900 rounded-2xl transition-all duration-150"
+      key={paper.id}
+    >
       {paper.name}
     </div>
   );
