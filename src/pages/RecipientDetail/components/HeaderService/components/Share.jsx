@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import ShareIcon from '../assets/images/share.svg';
-import Kakao from './Kakao';
+import ShareIcon from '../../../../../assets/images/share.svg';
+import Kakao from '../Kakao';
 
 const Share = ({ toastVisible, toggleShareMenu, shareMenuVisible, hideShareMenu }) => {
   const menuRef = useRef(null);

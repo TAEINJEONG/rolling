@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import EmojiPicker from 'emoji-picker-react';
-import AddEmoji from '../assets/images/add-emoji.svg';
-import api from '../api/axios';
+import AddEmoji from '../../../../../assets/images/add-emoji.svg';
+import api from '../../../../../api/axios';
 
 const EmojiMenu = ({ id, onUpdate, toggleEmojiPicker, hideEmojiPicker, emojiPickerVisible }) => {
   const menuRef = useRef(null);

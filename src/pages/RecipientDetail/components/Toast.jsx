@@ -1,7 +1,7 @@
-import ToastCheck from '../assets/images/toast_check.svg';
-import ToastClose from '../assets/images/toast_close.svg';
+import ToastCheck from '../../../assets/images/toast_check.svg';
+import ToastClose from '../../../assets/images/toast_close.svg';
 
-const Toast = ({ hideToast }) => {
+const Toast = ({ HideToast }) => {
   return (
     <>
       <div className="w-full px-5 fixed bottom-[70px] flex justify-center">
@@ -10,7 +10,7 @@ const Toast = ({ hideToast }) => {
             <img src={ToastCheck} className="w-6 h-6 mr-3" />
             <span className="text-16-regular text-white">URL이 복사 되었습니다.</span>
           </div>
-          <img src={ToastClose} className="w-6 h-6 cursor-pointer" onClick={hideToast} />
+          <img src={ToastClose} className="w-6 h-6 cursor-pointer" onClick={HideToast} />
         </div>
       </div>
     </>
