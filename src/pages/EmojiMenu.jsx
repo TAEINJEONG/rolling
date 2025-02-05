@@ -1,15 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 import AddEmoji from '../assets/images/add-emoji.svg';
 import api from '../api/axios';
 
-const EmojiMenu = ({ id, onUpdate }) => {
-  const [isActive, setIsActive] = useState(false);
+const EmojiMenu = ({ id, onUpdate, toggleEmojiPicker, hideEmojiPicker, emojiPickerVisible }) => {
   const menuRef = useRef(null);
-
-  const handleToggle = () => {
-    setIsActive((prev) => !prev);
-  };
 
   const emojiClick = async (emojiObject) => {
     const reactionData = {
@@ -23,14 +18,14 @@ const EmojiMenu = ({ id, onUpdate }) => {
     } catch (e) {
       console.error('API 호출 중 오류 발생:', e);
     } finally {
-      setIsActive(false);
+      hideEmojiPicker();
     }
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsActive(false);
+        hideEmojiPicker();
       }
     };
 
@@ -45,15 +40,15 @@ const EmojiMenu = ({ id, onUpdate }) => {
       <div className="relative" ref={menuRef}>
         <button
           className="flex jusity-center items-center border border-gray-300 rounded-[6px] px-[8px] py-[6px] md:px-[16px] cursor-pointer"
-          onClick={handleToggle}
+          onClick={toggleEmojiPicker}
         >
           <img className="md:mr-[4px]" src={AddEmoji} />
           <span className="hidden md:block">추가</span>
         </button>
 
-        {isActive && (
+        {emojiPickerVisible && (
           <div className="absolute -right-20 md:right-0 mt-2 z-1">
-            <EmojiPicker open={isActive} onEmojiClick={emojiClick} />
+            <EmojiPicker open={emojiPickerVisible} onEmojiClick={emojiClick} />
           </div>
         )}
       </div>

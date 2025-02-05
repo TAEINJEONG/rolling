@@ -1,12 +1,13 @@
 import { baseStyles, variants, sizes } from './buttonStyle';
 
-const Button = ({ children, icon, variant, size, disabled = false }) => {
+const Button = ({ children, icon, variant, size, disabled = false, onClick }) => {
   const buttonStyles = `${baseStyles} ${sizes[size]} ${variants[variant]}`;
 
   return (
     <button
       className={`${buttonStyles} flex items-center justify-center gap-[4px]`}
       disabled={disabled}
+      onClick={onClick} // onClick 핸들러 추가
     >
       {icon && <img src={icon} alt="emoji icon" />}
       {children}

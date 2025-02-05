@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../pages/Layout';
 import Home from '../pages/Home';
-import RollingPaperList from '../pages/RollingPaperList';
+import RollingPaperList from '../pages/list';
 import Message from '../pages/message';
 import Detail from '../pages/Detail';
 
