@@ -1,5 +1,5 @@
-import './editor.css'; // custom style
-import './quill-snow.css';
+import '../styles/editor.css'; // custom style
+import '../styles/quill-snow.css';
 import ReactQuill from 'react-quill-new';
 import { useRef, useEffect } from 'react';
 

@@ -1,9 +1,9 @@
-import InputWithError from './InputWithError';
-import ProfileImg from './ProfileImg';
+import InputWithError from './components/InputWithError';
+import ProfileImg from './components/ProfileImg';
 import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
-import Select from './Select';
-import Editor from './Editor';
+import Select from './components/Select';
+import Editor from './components/Editor';
 import { useEffect, useState } from 'react';
 
 const Message = () => {
