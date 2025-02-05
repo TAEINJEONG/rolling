@@ -19,7 +19,7 @@ const ProfileImg = ({ images, profileImg, setProfileImg, loadingError }) => {
         onClick={(e) => setProfileImg(images[0])} // 클릭 시 프로필 이미지 제거
       />
       <div>
-        <p className="text-[#555555] mb-3">프로필 이미지를 선택해주세요!</p>
+        <p className="text-[#555555] mb-3 ">프로필 이미지를 선택해주세요!</p>
         {loadingError ? (
           <ErrorMessage text={'이미지를 불러오는 데에 실패했습니다'} />
         ) : (

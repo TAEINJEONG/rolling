@@ -6,7 +6,7 @@ const InputWithError = ({ value, onChange, onBlur, isValid }) => {
       <input
         type="text"
         name="sender"
-        id="from-input"
+        id="sender-input"
         value={value}
         onChange={onChange}
         onBlur={onBlur}
