@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import api from '../api/axios';
-import RollingPaperCarousel from '../components/RollingPaperCarousel';
+import api from '../../api/axios';
+import RollingPaperCarousel from './components/RollingPaperCarousel';
 
 const RollingPaperList = () => {
   const [rollingPapers, setRollingPapers] = useState([]);
