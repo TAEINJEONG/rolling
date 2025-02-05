@@ -11,15 +11,15 @@ const RollingPaperCarousel = ({ title, papers, currentIndex, onNext, onPrev, ite
 
   return (
     <div className="rolling-paper-carousel">
-      <div className="flex flex-col gap-[16px]">
+      <div className="flex flex-col gap-4">
         <span className="carousel-title">{title}</span>
       </div>
-      <div className="flex gap-[20px] max-w-[1160px] overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative">
+      <div className="flex gap-5 max-w-[1160px] w-full overflow-hidden relative">
         {isPrevButtonVisible && (
           <CarouselButton className="hidden xl:block" direction="prev" onClick={onPrev} />
         )}
         <div
-          className="flex gap-[20px] xl:transition-transform xl:duration-300 max-md:gap-[12px]"
+          className="flex gap-5 xl:transition-transform xl:duration-300 max-md:gap-3"
           style={getTransformStyle(currentIndex)}
         >
           {papers.map((paper) => (
