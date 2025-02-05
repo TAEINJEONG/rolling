@@ -1,9 +1,9 @@
-import InputWithError from './InputWithError';
-import ProfileImg from './ProfileImg';
+import InputWithError from './components/InputWithError';
+import ProfileImg from './components/ProfileImg';
 import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
-import Select from './Select';
-import Editor from './Editor';
+import Select from './components/Select';
+import Editor from './components/Editor';
 import { useEffect, useState } from 'react';
 
 const Message = () => {
@@ -71,7 +71,11 @@ const Message = () => {
 
       {/*내용 입력 에디터*/}
       <label className="text-24-bold mt-[50px] mb-3">내용을 입력해 주세요</label>
-      <Editor editorContent={editorContent} setEditorContent={setEditorContent} />
+      <Editor
+        editorContent={editorContent}
+        setEditorContent={setEditorContent}
+        selectedFont={selectedFont}
+      />
 
       <label className="text-24-bold mt-[50px] mb-3">폰트 선택</label>
       <Select options={fontOptions} selected={selectedFont} onSelect={setSelectedFont} />

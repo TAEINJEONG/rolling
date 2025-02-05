@@ -1,5 +1,5 @@
-import arrowDown from '../../assets/images/arrow-down.svg';
-import arrowUp from '../../assets/images/arrow-up.svg';
+import arrowDown from '../../../assets/images/arrow-down.svg';
+import arrowUp from '../../../assets/images/arrow-up.svg';
 import { useState } from 'react';
 
 const Select = ({ options, selected, onSelect }) => {
