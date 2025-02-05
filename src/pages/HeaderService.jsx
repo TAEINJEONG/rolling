@@ -3,7 +3,7 @@ import Share from './Share';
 import EmojiMenu from './EmojiMenu';
 import ArrowDown from '../assets/images/arrow_down.svg';
 
-const HeaderService = ({ recipient, messages, reactions, id, onUpdate }) => {
+const HeaderService = ({ recipient, messages, reactions, id, onUpdate, toastVisible }) => {
   const [isOpen, setIsOpen] = useState(false);
   const emojiRef = useRef(null);
 
@@ -117,7 +117,7 @@ const HeaderService = ({ recipient, messages, reactions, id, onUpdate }) => {
           <div className="flex text-center items-center">
             <EmojiMenu id={id} onUpdate={onUpdate} />
             <div className="mx-[13px] bg-gray-100 w-[1px] h-[28px]"></div>
-            <Share />
+            <Share toastVisible={toastVisible} />
           </div>
         </div>
       </div>
