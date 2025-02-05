@@ -9,27 +9,27 @@ const HeaderService = ({ recipient, messages, reactions, id, onUpdate, toastVisi
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
   const [shareMenuVisible, setShareMenuVisible] = useState(false);
 
-  const toggleReaction = () => {
+  const handleToggleReaction = () => {
     setReactionsVisible(!reactionsVisible);
   };
 
-  const hideReactions = () => {
+  const handleHideReactions = () => {
     setReactionsVisible(false);
   };
 
-  const toggleEmojiPicker = () => {
+  const handleToggleEmojiPicker = () => {
     setEmojiPickerVisible(!emojiPickerVisible);
   };
 
-  const hideEmojiPicker = () => {
+  const handleHideEmojiPicker = () => {
     setEmojiPickerVisible(false);
   };
 
-  const toggleShareMenu = () => {
+  const handleToggleShareMenu = () => {
     setShareMenuVisible(!shareMenuVisible);
   };
 
-  const hideShareMenu = () => {
+  const handleHideShareMenu = () => {
     setShareMenuVisible(false);
   };
 
@@ -50,8 +50,8 @@ const HeaderService = ({ recipient, messages, reactions, id, onUpdate, toastVisi
 
           <RecipientReactions
             reactionsVisible={reactionsVisible}
-            toggleReaction={toggleReaction}
-            hideReactions={hideReactions}
+            toggleReaction={handleToggleReaction}
+            hideReactions={handleHideReactions}
             reactions={reactions}
           />
 
@@ -60,14 +60,14 @@ const HeaderService = ({ recipient, messages, reactions, id, onUpdate, toastVisi
               id={id}
               onUpdate={onUpdate}
               emojiPickerVisible={emojiPickerVisible}
-              toggleEmojiPicker={toggleEmojiPicker}
-              hideEmojiPicker={hideEmojiPicker}
+              toggleEmojiPicker={handleToggleEmojiPicker}
+              hideEmojiPicker={handleHideEmojiPicker}
             />
             <div className="mx-[13px] bg-gray-100 w-[1px] h-[28px]"></div>
             <Share
               shareMenuVisible={shareMenuVisible}
-              toggleShareMenu={toggleShareMenu}
-              hideShareMenu={hideShareMenu}
+              toggleShareMenu={handleToggleShareMenu}
+              hideShareMenu={handleHideShareMenu}
               toastVisible={toastVisible}
             />
           </div>
