@@ -4,6 +4,7 @@ import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
 import Select from './components/Select';
 import Editor from './components/Editor';
+import Button from '../../components/common/button/index';
 import { useEffect, useState } from 'react';
 
 const Message = () => {
@@ -15,7 +16,6 @@ const Message = () => {
   const [selectedRelation, setSelectedRelation] = useState('지인');
   const [editorContent, setEditorContent] = useState('');
   const [selectedFont, setSelectedFont] = useState('Noto Sans');
-
   const relationOptions = ['친구', '지인', '동료', '가족'];
   const fontOptions = ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체'];
 
@@ -77,8 +77,20 @@ const Message = () => {
         selectedFont={selectedFont}
       />
 
+      {/*폰트 선택*/}
       <label className="text-24-bold mt-[50px] mb-3">폰트 선택</label>
       <Select options={fontOptions} selected={selectedFont} onSelect={setSelectedFont} />
+
+      {/*폼 제출 버튼*/}
+      <div className="pt-16 pb-16">
+        <Button
+          variant="primary"
+          size="lg"
+          type="submit"
+          disabled={!(sender !== '' && editorContent !== '')}
+          children="생성하기"
+        ></Button>
+      </div>
     </form>
   );
 };
