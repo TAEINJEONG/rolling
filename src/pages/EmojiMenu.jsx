@@ -18,7 +18,7 @@ const EmojiMenu = ({ id, onUpdate }) => {
     };
 
     try {
-      await api.postRecipientReaction('13-2', id, reactionData);
+      await api.postRecipientsReactions('13-2', id, reactionData);
       onUpdate();
     } catch (e) {
       console.error('API 호출 중 오류 발생:', e);

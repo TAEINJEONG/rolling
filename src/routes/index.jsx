@@ -4,6 +4,7 @@ import Layout from '../pages/Layout';
 import Home from '../pages/Home';
 import RollingPaperList from '../pages/RollingPaperList';
 import Message from '../pages/message';
+import Detail from '../pages/Detail';
 
 const AppRouter = () => {
   return (
@@ -13,6 +14,7 @@ const AppRouter = () => {
           <Route path="/" element={<Home />} />
           <Route path="/list" element={<RollingPaperList />} />
           <Route path="/post/:id/message" element={<Message />} />
+          <Route path="/post/:id" element={<Detail />} />
         </Route>
       </Routes>
     </BrowserRouter>
