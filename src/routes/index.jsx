@@ -4,7 +4,7 @@ import Layout from '../pages/Layout';
 import Home from '../pages/Home';
 import RollingPaperList from '../pages/list';
 import Message from '../pages/message';
-import Detail from '../pages/Detail';
+import Detail from '../pages/RecipientDetail';
 
 const AppRouter = () => {
   return (

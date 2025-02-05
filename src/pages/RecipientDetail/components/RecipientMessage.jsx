@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ message, openMessage }) => (
+const RecipientMessage = ({ message, openMessage }) => (
   <div
     className="
       w-full h-[230px] sm:w-full sm:h-[230px] lg:h-[284px] xl:w-[384px] xl:h-[284px] 2xl:h-[284px]
@@ -12,7 +12,7 @@ const Card = ({ message, openMessage }) => (
   </div>
 );
 
-const CardsContainer = ({ messages, openMessage }) => {
+const MessageCotainer = ({ messages, openMessage }) => {
   return (
     <div
       className="
@@ -25,10 +25,14 @@ const CardsContainer = ({ messages, openMessage }) => {
       "
     >
       {messages?.map((message, index) => (
-        <Card key={index} message={message.content} openMessage={() => openMessage(message)} />
+        <RecipientMessage
+          key={index}
+          message={message.content}
+          openMessage={() => openMessage(message)}
+        />
       ))}
     </div>
   );
 };
 
-export default CardsContainer;
+export default MessageCotainer;

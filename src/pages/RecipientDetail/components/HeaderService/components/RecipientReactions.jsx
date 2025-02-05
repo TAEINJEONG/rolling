@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import ArrowDown from '../assets/images/arrow_down.svg';
+import ArrowDown from '../../../../../assets/images/arrow_down.svg';
 
 const RecipientReactions = ({ reactionsVisible, toggleReaction, hideReactions, reactions }) => {
   const emojiRef = useRef(null);

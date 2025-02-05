@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Card from './Card';
-import HeaderService from './HeaderService';
-import api from '../api/axios';
-import Toast from './Toast';
-import MessageDialog from './MessageDialog';
+import MessageCotainer from './components/RecipientMessage';
+import HeaderService from './components/HeaderService/components';
+import api from '../../api/axios';
+import Toast from './components/Toast';
+import MessageDialog from './components/MessageDialog';
 
 const Detail = () => {
   const { id } = useParams();
@@ -57,26 +57,26 @@ const Detail = () => {
   if (loading) return <p>로딩 중...</p>;
   if (error) return <p>오류 발생: {error.message}</p>;
 
-  const showToast = () => {
+  const handleShowToast = () => {
     setToastVisible(true);
     setTimeout(() => setToastVisible(false), 5000);
   };
 
-  const hideToast = () => {
+  const handleHideToast = () => {
     setToastVisible(false);
   };
 
-  const showDialog = () => {
+  const handleShowDialog = () => {
     setDialogVisible(true);
   };
 
-  const hideDialog = () => {
+  const handleHideDialog = () => {
     setDialogVisible(false);
   };
 
-  const openMessage = (message) => {
+  const handleOpenMessage = (message) => {
     setSelectedMessage(message);
-    showDialog();
+    handleShowDialog();
   };
 
   return (
@@ -86,15 +86,14 @@ const Detail = () => {
         messages={recipientMessages}
         reactions={reactions}
         id={id}
-        toastVisible={showToast}
+        toastVisible={handleShowToast}
         onUpdate={fetchRecipientReactionsData}
       />
-      <Card messages={recipientMessages} openMessage={openMessage} />
-      {toastVisible && <Toast hideToast={hideToast} />}
-
+      <MessageCotainer messages={recipientMessages} openMessage={handleOpenMessage} />
+      {toastVisible && <Toast HideToast={handleHideToast} />}
       <MessageDialog
         showDialog={dialogVisible}
-        hideDialog={hideDialog}
+        hideDialog={handleHideDialog}
         selectedMessage={selectedMessage}
       />
     </div>

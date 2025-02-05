@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog } from '@headlessui/react';
-import Button from '../components/common/button/index';
+import Button from '../../../components/common/button/index';
 
 const MessageDialog = ({ showDialog, hideDialog, selectedMessage }) => {
   return (
