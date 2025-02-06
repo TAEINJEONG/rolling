@@ -7,7 +7,7 @@ import Button from '../../components/common/button/index';
 import useProfileImages from './utils/useProfileImages';
 import { useState, useEffect } from 'react';
 import api from '../../api/axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Message = () => {
   const [sender, setSender] = useState('');
@@ -20,6 +20,7 @@ const Message = () => {
   const fontOptions = ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체'];
   const [isFormValid, setIsFormValid] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setSender(e.target.value.trim()); // 공백 제거 후 상태 업데이트
@@ -37,7 +38,6 @@ const Message = () => {
   // 버튼 클릭 시 폼 제출
   const handleSubmitForm = (e) => {
     e.preventDefault(); // 폼 제출 시 새로고침 방지
-
     const team = '13-2';
     const recipientId = parseInt(id, 10);
 
@@ -54,6 +54,7 @@ const Message = () => {
     const postMessage = async () => {
       try {
         await api.postRecipientsMessages(team, recipientId, data);
+        navigate(`/post/${id}`);
       } catch (e) {
         console.error(e);
       }
