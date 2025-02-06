@@ -1,14 +1,18 @@
 import React from 'react';
-import { Dialog } from '@headlessui/react';
+import { Dialog, DialogPanel } from '@headlessui/react';
 import Button from '../../../components/common/button/index';
 
-const MessageDialog = ({ showDialog, hideDialog, selectedMessage }) => {
+const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage }) => {
   return (
-    <>
-      <Dialog open={showDialog} onClose={hideDialog} className="relative z-100">
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/60">
+    <div>
+      <Dialog
+        open={dialogVisible}
+        onClose={dialogInVisible}
+        className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/60 z-100"
+      >
+        <DialogPanel>
           <div className="bg-white rounded-[16px] p-4">
-            {showDialog && (
+            {dialogVisible && (
               <div>
                 <span className="block">{selectedMessage.profileImageURL}</span>
                 <span className="block">{selectedMessage.sender}</span>
@@ -17,13 +21,13 @@ const MessageDialog = ({ showDialog, hideDialog, selectedMessage }) => {
               </div>
             )}
 
-            <Button size="sm" variant="primary" disabled={false} onClick={hideDialog}>
+            <Button size="sm" variant="primary" disabled={false} onClick={dialogInVisible}>
               확인
             </Button>
           </div>
-        </div>
+        </DialogPanel>
       </Dialog>
-    </>
+    </div>
   );
 };
 

@@ -1,13 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import ArrowDown from '../../../../../assets/images/arrow_down.svg';
 
-const RecipientReactions = ({ reactionsVisible, toggleReaction, hideReactions, reactions }) => {
+const RecipientReactions = ({
+  isReactionsMenuVisible,
+  toggleReaction,
+  closeReactions,
+  reactions,
+}) => {
   const emojiRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (emojiRef.current && !emojiRef.current.contains(event.target)) {
-        hideReactions();
+        closeReactions();
       }
     };
 
@@ -24,9 +29,9 @@ const RecipientReactions = ({ reactionsVisible, toggleReaction, hideReactions, r
           className="flex justify-center items-center gap-x-2 mr-2 cursor-pointer"
           onClick={toggleReaction}
         >
-          {reactions.results.slice(0, 3).map((emoji, index) => (
+          {reactions.results.slice(0, 3).map((emoji) => (
             <div
-              key={index}
+              key={emoji.emoji}
               className="flex items-center rounded-[32px] px-3 py-2 bg-black/54 text-white"
             >
               <div className="mr-1">{emoji.emoji}</div>
@@ -36,7 +41,8 @@ const RecipientReactions = ({ reactionsVisible, toggleReaction, hideReactions, r
           <img src={ArrowDown} className="w-6 h-6" />
         </div>
 
-        {reactionsVisible && (
+        {/* 열린 reactionMenu */}
+        {isReactionsMenuVisible && (
           <div
             className="
               absolute -right-20
@@ -46,9 +52,9 @@ const RecipientReactions = ({ reactionsVisible, toggleReaction, hideReactions, r
               rounded-lg shadow-lg z-1 overflow-hidden
             "
           >
-            {reactions.results.slice(0, 8).map((emoji, index) => (
+            {reactions.results.slice(0, 8).map((emoji) => (
               <div
-                key={index}
+                key={emoji.emoji}
                 className="flex items-center rounded-[32px] px-3 py-2 bg-black/54 text-white"
               >
                 <div className="mr-1">{emoji.emoji}</div>
