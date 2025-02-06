@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import api from '../api/axios';
+import api from '../../api/axios';
 import clsx from 'clsx';
-import selectedIcon from '../assets/images/selected.svg';
+import selectedIcon from '../../assets/images/selected.svg';
 
 const colors = [
   { hex: '#FFE2AD', name: 'beige' },
@@ -27,7 +27,8 @@ function ToPost() {
   const [error, setError] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
 
-  //컬러 선택스타일
+  /*컬러 선택스타일*/
+
   const ColorOption = ({ color, selected, onClick }) => {
     return (
       <div
@@ -46,7 +47,9 @@ function ToPost() {
       </div>
     );
   };
-  //컬러 선택
+  {
+    /*컬러 선택*/
+  }
   const ColorSelector = ({ selectedColor, setSelectedColor }) => {
     return (
       <div className="flex gap-4 mt-4">
@@ -61,7 +64,9 @@ function ToPost() {
       </div>
     );
   };
-  //이미지 추가 옵션
+  {
+    /*이미지 추가 옵션*/
+  }
   const handleImageUpload = (event) => {
     const files = event.target.files;
     if (files.length > 0) {
@@ -69,7 +74,9 @@ function ToPost() {
       setUploadedImages((prevImages) => [...prevImages, ...newImages]);
     }
   };
-  //이미지 선택 스타일
+  {
+    /*이미지 선택시 체크표시*/
+  }
   const SelectedOption = ({ src, selected, onClick }) => {
     return (
       <div
@@ -91,14 +98,14 @@ function ToPost() {
   const handleTitleChange = (e) => {
     setPost(e.target.value);
   };
-  //입력 유효성검사
+  /*입력 유효성검사*/
   const handleBlur = () => {
     if (post.trim() === '') {
       setError(true);
     }
   };
 
-  //페이지 생성
+  /*페이지 생성*/
   const createRolling = async (event) => {
     event.preventDefault();
 
@@ -114,7 +121,9 @@ function ToPost() {
       console.error('페이지 생성 실패:', error);
     }
   };
-  //API를 통해 이미지 받아오기
+  {
+    /*API를 통해 이미지 받아오기*/
+  }
   useEffect(() => {
     const fetchImages = async () => {
       try {
