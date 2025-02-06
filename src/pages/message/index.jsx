@@ -23,10 +23,10 @@ const Message = () => {
     setIsValid(true);
   };
 
-  const { images, loadingError } = useProfileImages();
+  const { images, requestError } = useProfileImages();
 
   useEffect(() => {
-    if (sender.trim() !== '' && editorContent.trim() !== '') {
+    if (sender.trim() && editorContent.trim()) {
       setIsFormValid(true);
     }
   }, [sender, editorContent]);
@@ -50,7 +50,7 @@ const Message = () => {
         images={images}
         profileImg={profileImg}
         setProfileImg={setProfileImg}
-        loadingError={loadingError}
+        requestError={requestError}
       />
 
       {/*관계 선택*/}
@@ -75,14 +75,9 @@ const Message = () => {
 
       {/*폼 제출 버튼*/}
       <div className="pt-16 pb-16">
-        <Button
-          variant="primary"
-          size="lg"
-          type="submit"
-          fullWidth="true"
-          disabled={!isFormValid}
-          children="생성하기"
-        ></Button>
+        <Button variant="primary" size="lg" type="submit" fullWidth="true" disabled={!isFormValid}>
+          생성하기
+        </Button>
       </div>
     </form>
   );
