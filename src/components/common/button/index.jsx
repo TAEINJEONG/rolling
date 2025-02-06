@@ -1,6 +1,14 @@
 import { baseStyles, variants, sizes } from './buttonStyle';
 
-const Button = ({ children, icon, variant, size, disabled = false, onClick }) => {
+const Button = ({
+  children,
+  icon,
+  variant,
+  size,
+  disabled = false,
+  onClick,
+  fullWidth = false,
+}) => {
   const buttonStyles = `${baseStyles} ${sizes[size]} ${variants[variant]}`;
 
   return (
@@ -8,7 +16,7 @@ const Button = ({ children, icon, variant, size, disabled = false, onClick }) =>
       className={`${buttonStyles} flex items-center justify-center gap-[4px]`}
       disabled={disabled}
       onClick={onClick}
-      style={{ width: '100%' }}
+      style={{ width: fullWidth ? '100%' : 'auto' }}
     >
       {icon && <img src={icon} alt="emoji icon" />}
       {children}
