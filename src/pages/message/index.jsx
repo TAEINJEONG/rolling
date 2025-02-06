@@ -4,7 +4,7 @@ import profilePreview from '../../assets/images/profile.svg';
 import Select from './components/Select';
 import Editor from './components/Editor';
 import Button from '../../components/common/button/index';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useProfileImages from './utils/useProfileImages';
 
 const Message = () => {
@@ -16,6 +16,7 @@ const Message = () => {
   const [selectedFont, setSelectedFont] = useState('Noto Sans');
   const relationOptions = ['친구', '지인', '동료', '가족'];
   const fontOptions = ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체'];
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const handleInputChange = (e) => {
     setSender(e.target.value.trim()); // 공백 제거 후 상태 업데이트
@@ -23,6 +24,12 @@ const Message = () => {
   };
 
   const { images, loadingError } = useProfileImages();
+
+  useEffect(() => {
+    if (sender.trim() !== '' && editorContent.trim() !== '') {
+      setIsFormValid(true);
+    }
+  }, [sender, editorContent]);
 
   return (
     <form className="container max-w-[720px] mx-auto mt-[47px] flex flex-col ">
@@ -72,7 +79,8 @@ const Message = () => {
           variant="primary"
           size="lg"
           type="submit"
-          disabled={!(sender !== '' && editorContent !== '')}
+          fullWidth="true"
+          disabled={!isFormValid}
           children="생성하기"
         ></Button>
       </div>
