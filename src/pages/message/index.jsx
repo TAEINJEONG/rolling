@@ -5,8 +5,8 @@ import Select from './components/Select';
 import Editor from './components/Editor';
 import Button from '../../components/common/button/index';
 import useProfileImages from './utils/useProfileImages';
-import { useState, useEffect } from 'react';
 import api from '../../api/axios';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const Message = () => {
@@ -23,7 +23,7 @@ const Message = () => {
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
-    setSender(e.target.value.trim()); // 공백 제거 후 상태 업데이트
+    setSender(e.target.value); // 공백 제거 후 상태 업데이트
     setIsValid(true);
   };
 
