@@ -1,43 +1,66 @@
 import InputWithError from './components/InputWithError';
 import ProfileImg from './components/ProfileImg';
-import api from '../../api/axios';
 import profilePreview from '../../assets/images/profile.svg';
 import Select from './components/Select';
 import Editor from './components/Editor';
-import { useEffect, useState } from 'react';
+import Button from '../../components/common/button/index';
+import useProfileImages from './utils/useProfileImages';
+import api from '../../api/axios';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Message = () => {
   const [sender, setSender] = useState('');
   const [isValid, setIsValid] = useState(true);
-  const [images, setImages] = useState([]);
-  const [loadingError, setLoadingError] = useState(false);
   const [profileImg, setProfileImg] = useState(profilePreview);
   const [selectedRelation, setSelectedRelation] = useState('지인');
   const [editorContent, setEditorContent] = useState('');
   const [selectedFont, setSelectedFont] = useState('Noto Sans');
-
   const relationOptions = ['친구', '지인', '동료', '가족'];
   const fontOptions = ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체'];
+  const [isFormValid, setIsFormValid] = useState(false);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
-    setSender(e.target.value); // 공백 제거 후 상태 업데이트
-    setIsValid(true);
+    setSender(e.target.value);
+    e.target.value.trim() ? setIsValid(true) : setIsValid(false);
   };
 
-  // 예시 프로필 이미지 요청
+  const { images, requestError } = useProfileImages();
+
   useEffect(() => {
-    const getProfileImages = async () => {
+    if (sender.trim() && editorContent.trim()) {
+      setIsFormValid(true);
+    }
+  }, [sender, editorContent]);
+
+  // 버튼 클릭 시 폼 제출
+  const handleSubmitForm = (e) => {
+    e.preventDefault(); // 폼 제출 시 새로고침 방지
+    const team = '13-2';
+    const recipientId = parseInt(id, 10);
+
+    const data = {
+      team: '13-2',
+      recipientId: recipientId,
+      sender: sender,
+      profileImageURL: profileImg,
+      relationship: selectedRelation,
+      content: editorContent,
+      font: selectedFont,
+    };
+
+    const postMessage = async () => {
       try {
-        const response = await api.getProfileImages();
-        setImages(response.data.imageUrls);
-        setLoadingError(false);
+        await api.postRecipientsMessages(team, recipientId, data);
+        navigate(`/post/${id}`);
       } catch (e) {
-        setLoadingError(true);
         console.error(e);
       }
     };
-    getProfileImages();
-  }, []);
+    postMessage();
+  };
 
   return (
     <form className="container max-w-[720px] mx-auto mt-[47px] flex flex-col ">
@@ -58,7 +81,7 @@ const Message = () => {
         images={images}
         profileImg={profileImg}
         setProfileImg={setProfileImg}
-        loadingError={loadingError}
+        requestError={requestError}
       />
 
       {/*관계 선택*/}
@@ -77,8 +100,23 @@ const Message = () => {
         selectedFont={selectedFont}
       />
 
+      {/*폰트 선택*/}
       <label className="text-24-bold mt-[50px] mb-3">폰트 선택</label>
       <Select options={fontOptions} selected={selectedFont} onSelect={setSelectedFont} />
+
+      {/*폼 제출 버튼*/}
+      <div className="pt-16 pb-16">
+        <Button
+          variant="primary"
+          size="lg"
+          type="submit"
+          fullWidth="true"
+          disabled={!isFormValid}
+          onClick={handleSubmitForm}
+        >
+          생성하기
+        </Button>
+      </div>
     </form>
   );
 };

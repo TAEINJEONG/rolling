@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import RollingPaperList from '../pages/list';
 import Message from '../pages/message';
 import Detail from '../pages/recipient-detail';
+import ToPost from '../pages/post';
 
 const AppRouter = () => {
   return (
@@ -14,6 +15,7 @@ const AppRouter = () => {
           <Route path="/" element={<Home />} />
           <Route path="/list" element={<RollingPaperList />} />
           <Route path="/post/:id/message" element={<Message />} />
+          <Route path="/post" element={<ToPost />} />
           <Route path="/post/:id" element={<Detail />} />
           <Route path="/post/:id/edit" element={<Detail />} />
         </Route>
