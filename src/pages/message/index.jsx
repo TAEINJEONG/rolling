@@ -23,8 +23,8 @@ const Message = () => {
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
-    setSender(e.target.value); // 공백 제거 후 상태 업데이트
-    setIsValid(true);
+    setSender(e.target.value);
+    e.target.value.trim() ? setIsValid(true) : setIsValid(false);
   };
 
   const { images, requestError } = useProfileImages();
