@@ -2,11 +2,11 @@ import prevButton from '../../../assets/images/arrow_left.svg';
 import nextButton from '../../../assets/images/arrow_right.svg';
 
 const BUTTON_STYLES = {
-  prev: 'left-0 translate-x-[-50%]',
-  next: 'right-0 translate-x-[50%]',
+  prev: 'left-0 -translate-x-1/2',
+  next: 'right-0 translate-x-1/2',
 };
 
-const BUTTON_PROPS = {
+const BUTTON_ATTRIBUTES = {
   prev: {
     src: prevButton,
     alt: '이전 버튼',
@@ -33,7 +33,7 @@ const CarouselButton = ({ direction = 'next', onClick, className, position = 'to
 
   return (
     <button className={`${baseStyles} ${className}`} onClick={onClick}>
-      <img src={BUTTON_PROPS[direction].src} alt={BUTTON_PROPS[direction].alt} />
+      <img {...BUTTON_ATTRIBUTES[direction]} />
     </button>
   );
 };
