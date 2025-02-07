@@ -36,7 +36,7 @@ const RollingPaperList = () => {
   useEffect(() => {
     const fetchRollingPaperList = async () => {
       try {
-        const response = await api.getRecipients('13-2');
+        const response = await api.getRecipientsList('13-2');
         const papers = response.data.results;
         setRollingPapers(papers);
       } catch (error) {
