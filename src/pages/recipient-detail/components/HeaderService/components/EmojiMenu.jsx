@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 import AddEmoji from '../../../../../assets/images/add-emoji.svg';
 import api from '../../../../../api/axios';
+import Button from '../../../../../components/common/button/index';
 
 const EmojiMenu = ({ id, onUpdate, toggleEmojiPicker, closeEmojiPicker, isEmojiPickerVisible }) => {
   const menuRef = useRef(null);
@@ -38,13 +39,14 @@ const EmojiMenu = ({ id, onUpdate, toggleEmojiPicker, closeEmojiPicker, isEmojiP
   return (
     <div>
       <div className="relative" ref={menuRef}>
-        <button
-          className="flex jusity-center items-center border border-gray-300 rounded-[6px] px-2 py-1.5 md:px-4 cursor-pointer"
+        <Button
+          variant="icon"
+          icon={AddEmoji}
           onClick={toggleEmojiPicker}
+          className="flex jusity-center items-center border border-gray-300 rounded-[6px] px-2 py-1.5 md:px-4 cursor-pointer"
         >
-          <img className="md:mr-1" src={AddEmoji} />
-          <span className="hidden md:block">추가</span>
-        </button>
+          <span className="hidden md:block md:ml-1">추가</span>
+        </Button>
 
         {isEmojiPickerVisible && (
           <div className="absolute -right-20 md:right-0 mt-2 z-1">

@@ -44,9 +44,9 @@ const HeaderService = ({ id, recipient, messages, reactions, onUpdate, onConfirm
       id,
     };
     return isEditPage ? (
-      <div className="flex items-center" onClick={() => onConfirmDelete(deleteData)}>
+      <div className="flex items-center">
         <div className="mx-[13px] bg-gray-100 w-[1px] h-[28px]"></div>
-        <Button variant="icon" icon={trash} className="ml-[13px]" />
+        <Button variant="icon" icon={trash} onClick={() => onConfirmDelete(deleteData)} />
       </div>
     ) : null;
   };
@@ -61,7 +61,7 @@ const HeaderService = ({ id, recipient, messages, reactions, onUpdate, onConfirm
         "
       >
         <p className="text-28-bold px-5 py-3 md:px-[0px] md:py-[0px] border-b md:border-[0px] border-gray-200">
-          To. {recipient.name}
+          To. {recipient?.name}
         </p>
         <div className="flex text-center items-center justify-end px-5 py-3 md:px-[0px] md:py-[0px]">
           <SenderAvatarList messages={messages} recipient={recipient} />

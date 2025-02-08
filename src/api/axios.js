@@ -7,6 +7,15 @@ export const apiClient = axios.create({
   },
 });
 
+const buildOffsetLimitQuery = (offset, limit) => {
+  const params = new URLSearchParams();
+
+  if (offset !== undefined) params.append('offset', offset);
+  if (limit !== undefined) params.append('limit', limit);
+
+  return params.toString() ? `?${params.toString()}` : '';
+};
+
 const apiRoutes = {
   // Background Images
   backgroundImages: '/background-images/',
@@ -19,10 +28,12 @@ const apiRoutes = {
 
   // Recipients
   recipients: {
-    base: (team, recipientId) =>
-      recipientId ? `/${team}/recipients/${recipientId}/` : `/${team}/recipients/`,
-    messages: (team, recipientId) => `/${team}/recipients/${recipientId}/messages/`,
-    reactions: (team, recipientId) => `/${team}/recipients/${recipientId}/reactions/`,
+    list: (team, offset, limit) => `/${team}/recipients/${buildOffsetLimitQuery(offset, limit)}`,
+    detail: (team, recipientId) => `/${team}/recipients/${recipientId}/`,
+    messages: (team, recipientId, offset, limit) =>
+      `/${team}/recipients/${recipientId}/messages/${buildOffsetLimitQuery(offset, limit)}`,
+    reactions: (team, recipientId, offset, limit) =>
+      `/${team}/recipients/${recipientId}/reactions/${buildOffsetLimitQuery(offset, limit)}`,
   },
 };
 
@@ -41,21 +52,23 @@ const api = {
   deleteMessages: (team, messageId) => apiClient.delete(apiRoutes.messages(team, messageId)),
 
   // Recipients
-  getRecipients: (team) => apiClient.get(apiRoutes.recipients.base(team)),
-  postRecipients: (team, data) => apiClient.post(apiRoutes.recipients.base(team), data),
-  getRecipients: (team, recipientId) => apiClient.get(apiRoutes.recipients.base(team, recipientId)),
+  getRecipientsList: (team, offset, limit) =>
+    apiClient.get(apiRoutes.recipients.list(team, offset, limit)),
+  getRecipientById: (team, recipientId) =>
+    apiClient.get(apiRoutes.recipients.detail(team, recipientId)),
+  postRecipients: (team, data) => apiClient.post(apiRoutes.recipients.detail(team), data),
   deleteRecipients: (team, recipientId) =>
-    apiClient.delete(apiRoutes.recipients.base(team, recipientId)),
+    apiClient.delete(apiRoutes.recipients.detail(team, recipientId)),
 
   // Recipient Messages
-  getRecipientsMessages: (team, recipientId) =>
-    apiClient.get(apiRoutes.recipients.messages(team, recipientId)),
+  getRecipientsMessages: (team, recipientId, offset, limit) =>
+    apiClient.get(apiRoutes.recipients.messages(team, recipientId, offset, limit)),
   postRecipientsMessages: (team, recipientId, data) =>
     apiClient.post(apiRoutes.recipients.messages(team, recipientId), data),
 
   // Recipient Reactions
-  getRecipientsReactions: (team, recipientId) =>
-    apiClient.get(apiRoutes.recipients.reactions(team, recipientId)),
+  getRecipientsReactions: (team, recipientId, offset, limit) =>
+    apiClient.get(apiRoutes.recipients.reactions(team, recipientId, offset, limit)),
   postRecipientsReactions: (team, recipientId, data) =>
     apiClient.post(apiRoutes.recipients.reactions(team, recipientId), data),
 };

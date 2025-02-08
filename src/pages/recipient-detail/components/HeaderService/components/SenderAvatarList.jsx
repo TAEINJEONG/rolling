@@ -6,8 +6,8 @@ const SenderAvatarList = ({ messages, recipient }) => {
           {messages.slice(0, 3).map((profileImage, index) => (
             <img
               className="absolute w-7 h-7 rounded-full border-white border"
-              key={profileImage.id}
-              src={profileImage.profileImageURL}
+              key={profileImage?.id}
+              src={profileImage?.profileImageURL}
               style={{
                 zIndex: index,
                 left: `${index * 16}px`,
@@ -26,13 +26,13 @@ const SenderAvatarList = ({ messages, recipient }) => {
                 left: `${3 * 16}px`,
               }}
             >
-              +{recipient.messageCount}
+              +{recipient?.messageCount}
             </div>
           )}
         </div>
         <div className="flex">
           <p className="text-18-regular text-gray-900">
-            <span className="text-18-bold">{recipient.messageCount}</span>
+            <span className="text-18-bold">{recipient?.messageCount}</span>
             명이 작성했어요!
           </p>
           <div className="mx-[13px] bg-gray-100 w-[1px] h-7"></div>
