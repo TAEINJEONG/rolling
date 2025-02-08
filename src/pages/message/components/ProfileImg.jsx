@@ -1,6 +1,13 @@
 import ErrorMessage from './ErrorMessage';
+import { useEffect } from 'react';
 
 const ProfileImg = ({ images, profileImg, setProfileImg, loadingError }) => {
+  useEffect(() => {
+    if (images && images.length > 0) {
+      setProfileImg(images[0]);
+    }
+  }, [images]);
+
   const filteredImgList = images
     .filter((_, index) => index >= 1) // index 0 제외
     .map((src) => (
@@ -11,6 +18,7 @@ const ProfileImg = ({ images, profileImg, setProfileImg, loadingError }) => {
         onClick={(e) => setProfileImg(e.target.currentSrc)} // 선택된 예시 이미지를 프로필로 지정
       />
     ));
+
   return (
     <div className="flex py-2">
       <img
