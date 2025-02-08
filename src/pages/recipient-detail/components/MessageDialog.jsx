@@ -1,8 +1,18 @@
 import React from 'react';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import Button from '../../../components/common/button/index';
+import trash from '../../../assets/images/trash.svg';
 
-const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage }) => {
+const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage, onDelete }) => {
+  const onConfirmDeleteData = (e) => {
+    e.stopPropagation();
+    const deleteData = {
+      type: 'message',
+      id: selectedMessage.id,
+    };
+    onDelete(deleteData);
+  };
+
   return (
     <div>
       <Dialog
@@ -12,6 +22,7 @@ const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage }) => {
       >
         <DialogPanel>
           <div className="bg-white rounded-[16px] p-4">
+            <Button variant="icon" icon={trash} onClick={onConfirmDeleteData} />
             {dialogVisible && (
               <div>
                 <span className="block">{selectedMessage.profileImageURL}</span>

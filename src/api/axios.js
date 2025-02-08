@@ -12,7 +12,6 @@ const buildOffsetLimitQuery = (offset, limit) => {
 
   if (offset !== undefined) params.append('offset', offset);
   if (limit !== undefined) params.append('limit', limit);
-  
   return params.toString() ? `?${params.toString()}` : '';
 };
 

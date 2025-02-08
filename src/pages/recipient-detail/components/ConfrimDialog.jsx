@@ -23,7 +23,7 @@ const ConfrimDialog = ({ openConfrimDialog, closeConfrimDialog, confirmDeletion 
                 확인
               </Button>
               <Button size="md" variant="secondary" onClick={closeConfrimDialog}>
-                에반데..
+                취소
               </Button>
             </div>
           </div>
