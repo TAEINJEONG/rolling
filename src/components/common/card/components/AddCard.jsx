@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import plus from '../../../assets/images/plus.svg';
+import plus from '../../../../assets/images/plus.svg';
 
 const AddCard = () => (
   <article className="w-sm h-[280px] bg-white rounded-2xl shadow-[0_2px_12px_0_rgba(0,0,0,0.08)] flex items-center justify-center">

@@ -1,22 +1,44 @@
-import CardHeader from './CardHeader';
-import CardContent from './CardContent';
+import { CARD_TYPES } from './constants';
+import ToCard from './components/ToCard';
+import FromCard from './components/FromCard';
 
-const Card = ({ name, profileImg, relationship, messageContent, createdAtMessage, onDelete }) => {
+const Card = ({
+  type = CARD_TYPES.TO,
+  name,
+  profileImage,
+  profileImages = [],
+  messageContent,
+  relationship,
+  isShowDeleteButton,
+  createdAtMessage,
+  reactions = [],
+  count,
+  bgColor,
+  bgImage,
+  ...props
+}) => {
   return (
-    <>
-      <section className="w-sm h-[280px] bg-white rounded-2xl shadow-[0_2px_12px_0_rgba(0,0,0,0.08)] flex items-center justify-center">
-        <article className="w-full h-full relative px-6 pb-6 pt-7">
-          <CardHeader
-            profileImg={profileImg}
-            name={name}
-            relationship={relationship}
-            onDelete={onDelete}
-            showDeleteButton={true}
-          />
-          <CardContent messageContent={messageContent} createdAtMessage={createdAtMessage} />
-        </article>
-      </section>
-    </>
+    <div>
+      {type === CARD_TYPES.TO ? (
+        <ToCard
+          name={name}
+          profileImages={profileImages}
+          count={count}
+          reactions={reactions}
+          bgColor={bgColor}
+          bgImage={bgImage}
+        />
+      ) : (
+        <FromCard
+          name={name}
+          profileImage={profileImage}
+          relationship={relationship}
+          messageContent={messageContent}
+          createdAtMessage={createdAtMessage}
+          isShowDeleteButton={isShowDeleteButton}
+        />
+      )}
+    </div>
   );
 };
 
