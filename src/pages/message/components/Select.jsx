@@ -1,5 +1,4 @@
 import arrowDown from '../../../assets/images/arrow-down.svg';
-import arrowUp from '../../../assets/images/arrow-up.svg';
 import { useState } from 'react';
 
 const Select = ({ options, selected, onSelect }) => {
@@ -25,13 +24,17 @@ const Select = ({ options, selected, onSelect }) => {
     <div className="relative w-[320px] h-[50px]">
       {/*Select Box*/}
       <div
-        className="w-full h-full py-3 px-4 border border-[#CCCCCC] rounded-lg cursor-pointer"
+        className="w-full h-full py-3 px-4 border border-[#CCCCCC] rounded-lg cursor-pointer hover:border-[var(--color-black)] hover:border-2"
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {selected}
       </div>
-      <div className="absolute inset-y-0 flex items-center right-4 pointer-events-none">
-        <img src={isOpen ? arrowUp : arrowDown} alt="화살표" />
+      <div className="absolute inset-y-0 flex items-center right-4 pointer-events-none duration-300 ease-in">
+        <img
+          src={arrowDown}
+          alt="화살표"
+          className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+        />
       </div>
 
       {/*Select Menu*/}
