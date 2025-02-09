@@ -3,6 +3,7 @@ import { useLocation, useParams, Link, useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Button from '../../../components/common/button/index';
 import trash from '../../../assets/images/trash.svg';
+import Card from '../../../components/common/card/components/FromCard';
 
 // 현재 pathName이 /edit인지 확인
 const useIsEditPage = () => {
@@ -51,18 +52,28 @@ const EditButton = () => {
   );
 };
 
-const RecipientMessage = ({ message, onMessageSelect, onDelete }) => (
-  <div
-    className="
-      w-full h-57.5 sm:w-full sm:h-57.5 md:h-71 lg:h-71 xl:w-96 xl:h-71 2xl:h-71
-      bg-white rounded-[16px] drop-shadow-xs cursor-pointer
-    "
-    onClick={onMessageSelect}
-  >
-    <TrashButton message={message} onDelete={onDelete} />
-    <h3>{message.content}</h3>
-  </div>
-);
+const RecipientMessage = ({ message, onMessageSelect, onDelete }) => {
+  const useIsEditPage = () => {
+    const location = useLocation();
+    return location.pathname.endsWith('/edit');
+  };
+
+  const isEditPage = useIsEditPage();
+  return (
+    <div onClick={onMessageSelect} className="cursor-pointer">
+      <Card
+        name={message.sender}
+        getBadgeStyle={message.relationship}
+        relationship={message.relationship}
+        profileImage={message.profileImageURL}
+        messageContent={message.content}
+        createdAtMessage={message.createdAt}
+        isShowDeleteButton={isEditPage}
+        onDelete={onDelete}
+      />
+    </div>
+  );
+};
 
 const RecipientMessageContainer = ({
   messages,
