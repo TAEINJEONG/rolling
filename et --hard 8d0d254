@@ -1,0 +1,20 @@
+[33m4776006[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtopost[m[33m)[m HEAD@{0}: checkout: moving from topost to topost
+[33m4776006[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtopost[m[33m)[m HEAD@{1}: reset: moving to HEAD~1
+[33m8d0d254[m[33m ([m[1;31morigin/topost[m[33m)[m HEAD@{2}: checkout: moving from main to topost
+[33m62ec9e3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{3}: commit (merge): Merge branch 'topost' of https://github.com/rover1523/rolling
+[33mfc06df6[m[33m ([m[1;31mupstream/main[m[33m)[m HEAD@{4}: pull origin main: Fast-forward
+[33m4bb0945[m HEAD@{5}: checkout: moving from develop to main
+[33mbdf8169[m[33m ([m[1;32mdevelop[m[33m)[m HEAD@{6}: commit (merge): Merge branch 'main' of https://github.com/rover1523/rolling into develop
+[33mde035b6[m HEAD@{7}: commit (merge): fix 오류수정
+[33md078f81[m HEAD@{8}: reset: moving to HEAD~1
+[33mea8e429[m HEAD@{9}: reset: moving to HEAD~1
+[33m56068fd[m HEAD@{10}: reset: moving to HEAD~1
+[33ma95415e[m HEAD@{11}: commit (merge): Merge branch 'topost' of https://github.com/rover1523/rolling into develop
+[33m56068fd[m HEAD@{12}: commit (merge): fix: 오류수정
+[33mea8e429[m HEAD@{13}: commit: 복구
+[33md078f81[m HEAD@{14}: commit: feat: clsx추가
+[33m5011c3e[m HEAD@{15}: pull: Fast-forward
+[33maf46ef7[m HEAD@{16}: pull: Fast-forward
+[33mf0fd9a7[m HEAD@{17}: commit: Husky 설정 완료
+[33m4bb0945[m HEAD@{18}: checkout: moving from main to develop
+[33m4bb0945[m HEAD@{19}: clone: from https://github.com/TAEINJEONG/rolling.git
