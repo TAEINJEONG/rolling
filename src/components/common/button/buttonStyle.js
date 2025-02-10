@@ -14,6 +14,6 @@ export const sizes = {
   xs: 'h-[28px] px-6 rounded-md text-14-regular leading-5 tracking-[-0.005em]',
   sm: 'h-[36px] px-6 rounded-md text-16-regular leading-6 tracking-[-0.01em]',
   md: 'h-[40px] px-6 rounded-md text-16-regular leading-6.5 tracking-[-0.01em]',
-  lg: 'h-[56px] px-8 rounded-xl text-18-bold leading-7 tracking-[-0.01em]',
+  lg: 'h-[56px] px-20 rounded-xl text-18-bold leading-7 tracking-[-0.01em]',
   xl: 'h-[56px] px-10 rounded-xl text-18-bold leading-7 tracking-[-0.01em]',
 };
