@@ -31,7 +31,7 @@ const ProfileImg = ({ images, profileImg, setProfileImg, loadingError }) => {
         {loadingError ? (
           <ErrorMessage text={'이미지를 불러오는 데에 실패했습니다'} />
         ) : (
-          <div className="flex">{filteredImgList}</div>
+          <div className="flex flex-wrap">{filteredImgList}</div>
         )}
       </div>
     </div>

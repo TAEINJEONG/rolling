@@ -1,6 +1,6 @@
 import arrowDown from '../../../assets/images/arrow-down.svg';
-import arrowUp from '../../../assets/images/arrow-up.svg';
 import { useState } from 'react';
+import clsx from 'clsx';
 
 const Select = ({ options, selected, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false); // Select Menu 열림 상태
@@ -25,13 +25,26 @@ const Select = ({ options, selected, onSelect }) => {
     <div className="relative w-[320px] h-[50px]">
       {/*Select Box*/}
       <div
-        className="w-full h-full py-3 px-4 border border-[#CCCCCC] rounded-lg cursor-pointer"
+        className={clsx(
+          'w-full h-full py-3 px-4 border border-[#CCCCCC] rounded-lg cursor-pointer hover:border-[var(--color-black)] hover:border-2',
+          {
+            'border-[var(--color-black)] border-2': isOpen,
+            'border-[#CCCCCC]': !isOpen,
+          }
+        )}
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {selected}
       </div>
-      <div className="absolute inset-y-0 flex items-center right-4 pointer-events-none">
-        <img src={isOpen ? arrowUp : arrowDown} alt="화살표" />
+      <div className="absolute inset-y-0 flex items-center right-4 pointer-events-none duration-300 ease-in">
+        <img
+          src={arrowDown}
+          alt="화살표"
+          className={clsx('transition-transform duration-300', {
+            'rotate-180': isOpen,
+            'rotate-0': !isOpen,
+          })}
+        />
       </div>
 
       {/*Select Menu*/}
