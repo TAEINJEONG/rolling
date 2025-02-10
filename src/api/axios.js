@@ -27,10 +27,8 @@ const apiRoutes = {
 
   // Recipients
   recipients: {
-    list: (team, offset, limit) => 
-      `/${team}/recipients/${buildOffsetLimitQuery(offset, limit)}`,
-    detail: (team, recipientId) => 
-      `/${team}/recipients/${recipientId}/`,
+    list: (team, offset, limit) => `/${team}/recipients/${buildOffsetLimitQuery(offset, limit)}`,
+    detail: (team) => `/${team}/recipients/`,
     messages: (team, recipientId, offset, limit) =>
       `/${team}/recipients/${recipientId}/messages/${buildOffsetLimitQuery(offset, limit)}`,
     reactions: (team, recipientId, offset, limit) =>
@@ -53,8 +51,10 @@ const api = {
   deleteMessages: (team, messageId) => apiClient.delete(apiRoutes.messages(team, messageId)),
 
   // Recipients
-  getRecipientsList: (team, offset, limit) => apiClient.get(apiRoutes.recipients.list(team, offset, limit)),
-  getRecipientById: (team, recipientId) => apiClient.get(apiRoutes.recipients.detail(team, recipientId)),
+  getRecipientsList: (team, offset, limit) =>
+    apiClient.get(apiRoutes.recipients.list(team, offset, limit)),
+  getRecipientById: (team, recipientId) =>
+    apiClient.get(apiRoutes.recipients.detail(team, recipientId)),
   postRecipients: (team, data) => apiClient.post(apiRoutes.recipients.detail(team), data),
   deleteRecipients: (team, recipientId) =>
     apiClient.delete(apiRoutes.recipients.detail(team, recipientId)),
