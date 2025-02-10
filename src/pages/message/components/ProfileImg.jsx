@@ -1,5 +1,6 @@
 import ErrorMessage from './ErrorMessage';
 import Skeleton from '../../../components/common/skeleton';
+import api from '../../../api/axios';
 import { useEffect, useRef } from 'react';
 
 const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading }) => {
@@ -22,11 +23,11 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
             key={src}
             src={src}
             className="w-14 h-14 rounded-full mr-1 cursor-pointer"
-            onClick={(e) => setProfileImg(e.target.currentSrc)} // 선택된 예시 이미지를 프로필로 지정
+            onClick={(e) => setProfileImg(e.target.currentSrc)}
           />
         ));
 
-  // 미리보기 이미지 클릭 시 실행되는 함수
+  // 미리보기 이미지 클릭 시 실행
   const handleProfileClick = (e) => {
     if (e.target.src === images[0]) {
       ImageInputRef.current.click(); // 파일 선택창 열기
@@ -35,12 +36,20 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
     }
   };
 
-  const handleImgChange = (e) => {
+  // 원하는 파일을 프로필 이미지로 저장
+  const handleImgChange = async (e) => {
     const file = e.target.files[0];
-    console.log(file);
+
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfileImg(imageUrl);
+      const formData = new FormData();
+      formData.append('image', file);
+      try {
+        const response = await api.uploadFile(formData);
+        const responseImageUrl = encodeURI(response.data.url); // 응답받은 url 인코딩
+        setProfileImg(responseImageUrl);
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
 
@@ -54,6 +63,7 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
       <input
         type="file"
         ref={ImageInputRef}
+        accept="image/jpeg, image/png, image/jpg"
         style={{ display: 'none' }}
         onChange={handleImgChange}
       />
