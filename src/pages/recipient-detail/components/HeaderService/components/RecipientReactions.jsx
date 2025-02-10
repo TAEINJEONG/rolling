@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import ArrowDown from '../../../../../assets/images/arrow_down.svg';
+import ReactionsList from '../../../../../components/common/card/components/ReactionsList';
 
 const RecipientReactions = ({
   isReactionsMenuVisible,
@@ -20,7 +21,7 @@ const RecipientReactions = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [closeReactions]);
 
   return (
     <>
