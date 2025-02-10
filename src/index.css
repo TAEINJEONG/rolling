@@ -1,4 +1,11 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import 'tailwindcss';
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-pre);
+}
 
 @theme {
   /* 보라색 */
@@ -46,7 +53,7 @@
 
   /* 기타 색상 */
   --color-white: oklch(100% 0 0);
-  --color-balck: oklch(0% 0 0);
+  --color-black: oklch(0% 0 0);
   --color-error: oklch(59.42% 0.199 25.67);
   --color-surface: oklch(97.96% 0.0095 273.36);
 
@@ -58,83 +65,86 @@
   --text-28-bold: 28px;
   --text-28-bold--line-height: 42px;
   --text-28-bold--font-weight: 700;
-  --text-28-bold--letter-spacing: -2.8px;
+  --text-28-bold--letter-spacing: -0.01em;
 
   /* text-24-bold */
   --text-24-bold: 24px;
   --text-24-bold--line-height: 36px;
   --text-24-bold--font-weight: 700;
-  --text-24-bold--letter-spacing: -2.4px;
+  --text-24-bold--letter-spacing: -0.01em;
 
   /* text-24-regular */
   --text-24-regular: 24px;
   --text-24-regular--line-height: 36px;
   --text-24-regular--font-weight: 400;
-  --text-24-regular--letter-spacing: -2.4px;
+  --text-24-regular--letter-spacing: -0.01em;
 
   /* text-20-bold */
   --text-20-bold: 20px;
   --text-20-bold--line-height: 30px;
   --text-20-bold--font-weight: 700;
-  --text-20-bold--letter-spacing: -2px;
+  --text-20-bold--letter-spacing: -0.01em;
 
   /* text-20-regular */
   --text-20-regular: 20px;
   --text-20-regular--line-height: 30px;
   --text-20-regular--font-weight: 400;
-  --text-20-regular--letter-spacing: -2px;
+  --text-20-regular--letter-spacing: -0.01em;
 
   /* text-18-bold */
   --text-18-bold: 18px;
   --text-18-bold--line-height: 28px;
   --text-18-bold--font-weight: 700;
-  --text-18-bold--letter-spacing: -1.8px;
+  --text-18-bold--letter-spacing: -0.01em;
 
   /* text-18-regular */
   --text-18-regular: 18px;
   --text-18-regular--line-height: 28px;
   --text-18-regular--font-weight: 400;
-  --text-18-regular--letter-spacing: -1.8px;
+  --text-18-regular--letter-spacing: -0.01em;
 
   /* text-16-bold */
   --text-16-bold: 16px;
   --text-16-bold--line-height: 26px;
   --text-16-bold--font-weight: 700;
-  --text-16-bold--letter-spacing: -1.6px;
+  --text-16-bold--letter-spacing: -0.01em;
 
   /* text-16-regular */
   --text-16-regular: 16px;
   --text-16-regular--line-height: 26px;
   --text-16-regular--font-weight: 400;
-  --text-16-regular--letter-spacing: -1.6px;
+  --text-16-regular--letter-spacing: -0.01em;
 
   /* text-15-bold */
   --text-15-bold: 15px;
   --text-15-bold--line-height: 22px;
   --text-15-bold--font-weight: 700;
-  --text-15-bold--letter-spacing: -1.5px;
+  --text-15-bold--letter-spacing: -0.01em;
 
   /* text-15-regular */
   --text-15-regular: 15px;
   --text-15-regular--line-height: 22px;
   --text-15-regular--font-weight: 400;
-  --text-15-regular--letter-spacing: -1.5px;
+  --text-15-regular--letter-spacing: -0.01em;
 
   /* text-14-bold */
   --text-14-bold: 14px;
   --text-14-bold--line-height: 20px;
   --text-14-bold--font-weight: 700;
-  --text-14-bold--letter-spacing: -0.7px;
+  --text-14-bold--letter-spacing: -0.01em;
 
   /* text-14-regular */
   --text-14-regular: 14px;
   --text-14-regular--line-height: 20px;
   --text-14-regular--font-weight: 400;
-  --text-14-regular--letter-spacing: -0.7px;
+  --text-14-regular--letter-spacing: -0.01em;
 
   /* text-12-regular */
   --text-12-regular: 12px;
   --text-12-regular--line-height: 18px;
   --text-12-regular--font-weight: 400;
-  --text-12-regular--letter-spacing: -0.6px;
+  --text-12-regular--letter-spacing: -0.01em;
+
+  --container-tablet: 1024px;
+  --container-zero: 0px;
 }
