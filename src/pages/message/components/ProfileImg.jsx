@@ -2,16 +2,14 @@ import ErrorMessage from './ErrorMessage';
 import Skeleton from '../../../components/common/skeleton';
 import { useEffect } from 'react';
 
-const ProfileImg = ({ images, profileImg, setProfileImg, requestError, loading }) => {
-  console.log(loading);
-
+const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading }) => {
   useEffect(() => {
     if (images && images.length > 0) {
       setProfileImg(images[0]);
     }
   }, [images]);
 
-  const filteredImgList = loading
+  const filteredImgList = isLoading
     ? Array(9)
         .fill(0)
         .map((_, index) => <Skeleton key={index} className="w-14 h-14 !rounded-full mr-1" />)

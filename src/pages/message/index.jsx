@@ -27,7 +27,7 @@ const Message = () => {
     e.target.value.trim() ? setIsValid(true) : setIsValid(false);
   };
 
-  const { images, requestError, loading } = useProfileImages();
+  const { images, requestError, isLoading } = useProfileImages();
 
   useEffect(() => {
     if (sender.trim() && editorContent.trim()) {
@@ -82,7 +82,7 @@ const Message = () => {
         profileImg={profileImg}
         setProfileImg={setProfileImg}
         requestError={requestError}
-        loading={loading}
+        isLoading={isLoading}
       />
 
       {/*관계 선택*/}
