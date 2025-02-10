@@ -31,6 +31,7 @@ const Detail = () => {
     try {
       setLoading(true);
       const recipientResponse = await api.getRecipientById('13-2', id);
+      console.log(recipientResponse.data);
       const recipientMessagesResponse = await api.getRecipientsMessages('13-2', id, 0, 5);
       setRecipient(recipientResponse.data);
       setRecipientMessages(recipientMessagesResponse.data.results);
@@ -77,7 +78,7 @@ const Detail = () => {
       fetchRecipientData();
       fetchRecipientReactionsData();
     }
-  }, [id, location.pathname]);
+  }, [id, location]);
 
   if (error) return <p>오류 발생: {error.message}</p>;
 
@@ -151,9 +152,7 @@ const Detail = () => {
         onUpdate={fetchRecipientReactionsData}
         onConfirmDelete={openConfrimDialog} // 삭제 dialog를 여는 기능
       />
-      {loading ? (
-        <p className="text-center mt-10">로딩 중...</p>
-      ) : error ? (
+      {error ? (
         <p className="text-center text-red-500 mt-10">오류 발생: {error.message}</p>
       ) : (
         <>
@@ -163,6 +162,7 @@ const Detail = () => {
             hasMore={hasMore}
             loadMoreData={loadMoreData}
             selectMessage={selectMessage}
+            loading={loading}
           />
           <MessageDialog
             dialogVisible={hasCurrentSelectedData} // 데이터를 기반으로 dialog을 보여줄지 결정
