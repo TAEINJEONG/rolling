@@ -1,5 +1,5 @@
-import RollingPaperCard from './RollingPaperCard';
-
+import Card from '../../../components/common/card';
+import { Link } from 'react-router-dom';
 const CARD_WIDTH = 295;
 
 const CarouselContent = ({ currentIndex, papers }) => {
@@ -13,7 +13,9 @@ const CarouselContent = ({ currentIndex, papers }) => {
         style={getTransformStyle(currentIndex)}
       >
         {papers.map((paper) => (
-          <RollingPaperCard key={paper.id} paper={paper} />
+          <Link to={`/post/${paper.id}`} key={paper.id}>
+            <Card type="to" bgColor={paper.backgroundColor} bgImage={paper.backgroundImageUrl} />
+          </Link>
         ))}
       </div>
     </div>
