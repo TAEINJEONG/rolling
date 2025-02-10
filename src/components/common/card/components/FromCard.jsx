@@ -1,4 +1,4 @@
-import { getBadgeStyle, getRelationshipText } from '../badgeStyle';
+import { getBadgeStyle } from '../badgeStyle';
 import trash from '../../../../assets/images/trash.svg';
 import Button from '../../button';
 
@@ -11,6 +11,9 @@ function FromCard({
   isShowDeleteButton,
   onDelete,
 }) {
+  const formattedDate = createdAtMessage?.split('T')[0].split('-').slice(0, 3).join('.');
+  const badgeStyle = getBadgeStyle(relationship);
+
   return (
     <>
       <section className="relative box-border min-h-[280px] bg-white rounded-2xl shadow-[0_2px_12px_0_rgba(0,0,0,0.08)]">
@@ -22,7 +25,7 @@ function FromCard({
                 From. <span className="text-20-bold">{name}</span>
               </h1>
               <p
-                className={`w-[41px] h-5 rounded-sm text-14-regular text-center leading-5 tracking-[-0.005em] ${getBadgeStyle(relationship)}`}
+                className={`w-[41px] h-5 rounded-sm text-14-regular text-center leading-5 tracking-[-0.005em] ${badgeStyle}`}
               >
                 {relationship}
               </p>
@@ -33,7 +36,7 @@ function FromCard({
             {messageContent}
           </span>
           <p className="text-12-regular leading-4.5 tracking-[-0.005em] text-gray-400 absolute bottom-6 left-6">
-            {createdAtMessage}
+            {formattedDate}
           </p>
         </article>
       </section>

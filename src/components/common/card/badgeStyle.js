@@ -7,14 +7,3 @@ export const getBadgeStyle = (relationship) => {
   };
   return styles[relationship];
 };
-
-export const getRelationshipText = (relationship) => {
-  console.log(relationship);
-  const relationshipText = {
-    family: '가족',
-    friend: '친구',
-    acquaintance: '지인',
-    colleague: '동료',
-  };
-  return relationshipText[relationship];
-};
