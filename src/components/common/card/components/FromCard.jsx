@@ -13,7 +13,7 @@ function FromCard({
 }) {
   return (
     <>
-      <section className="relative box-border w-sm min-h-[280px] bg-white rounded-2xl shadow-[0_2px_12px_0_rgba(0,0,0,0.08)]">
+      <section className="relative box-border min-h-[280px] bg-white rounded-2xl shadow-[0_2px_12px_0_rgba(0,0,0,0.08)]">
         <article className="px-6 pt-7 pb-6">
           <div className="border-b border-gray-200 flex items-center gap-3.5 pb-4 mb-4">
             <img src={profileImage} alt="profile" className="w-14 h-14 rounded-full" />
@@ -24,7 +24,7 @@ function FromCard({
               <p
                 className={`w-[41px] h-5 rounded-sm text-14-regular text-center leading-5 tracking-[-0.005em] ${getBadgeStyle(relationship)}`}
               >
-                {getRelationshipText(relationship)}
+                {relationship}
               </p>
             </div>
             {isShowDeleteButton && <Button variant="icon" icon={trash} onClick={onDelete} />}
