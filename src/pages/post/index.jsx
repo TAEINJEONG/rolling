@@ -46,12 +46,24 @@ const Post = () => {
       backgroundImageURL: selectedTab === 'image' ? selectedImage : null,
     };
 
-    console.log('API 호출 전 데이터:', NEW_PAGE);
+    const requestData = {
+      name: post.trim(),
+      backgroundColor: selectedTab === 'color' ? selectedColor : 'beige',
+      backgroundImageURL: selectedTab === 'image' ? selectedImage : null,
+    };
 
-    const response = await api.postRecipients('13-2', NEW_PAGE);
-    const createdId = response.data.id;
-    if (createdId) {
-      navigate(`/post/${createdId}`);
+    console.log('API 호출 전 데이터:', requestData);
+
+    try {
+      const response = await api.postRecipients('13-2', NEW_PAGE);
+      const createdId = response.data.id;
+      if (createdId) {
+        navigate(`/post/${createdId}`);
+      } else {
+        console.error('응답에 ID가 없습니다:', response.data);
+      }
+    } catch (error) {
+      console.error('페이지 생성 실패:', error.response?.data || error.message);
     }
   };
 
@@ -71,7 +83,7 @@ const Post = () => {
   }, []);
 
   return (
-    <div className="flex-col justify-center space-x-4 mt-6 w-2/3">
+    <div className="flex flex-col items-center mt-6 w-full px-4">
       <form onSubmit={createRolling}>
         <h1 className="text-left text-4xl font-bold">To.</h1>
         <input
@@ -117,7 +129,10 @@ const Post = () => {
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full mt-2 mb-1 items-stretch">
             {images.map((src) => (
-              <div key={src} className="w-full h-full sm:h-full md:h-full lg:h-[15rem] flex">
+              <div
+                key={src}
+                className="relative w-full h-40 sm:h-48 md:h-56 rounded-lg overflow-hidden"
+              >
                 <SelectedOption
                   src={src}
                   selected={selectedImage === src}
