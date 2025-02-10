@@ -1,5 +1,6 @@
 import { getBadgeStyle } from '../../card/badgeStyle';
 import Modal from '../index';
+import '../scrollStyle.css';
 
 function MessageModal({
   name,
