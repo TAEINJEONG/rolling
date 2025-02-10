@@ -51,7 +51,7 @@ const ToCard = ({ name, profileImages = [], count = 0, reactions = [], bgColor, 
         <h1 className={`text-20-bold ${bgImage ? 'text-white' : 'text-gray-900'} mb-3`}>
           To. {name}
         </h1>
-        {count > 3 && <ProfileAvatarGroup images={profileImages} totalCount={count} />}
+        <ProfileAvatarGroup images={profileImages} totalCount={count} />
         <span className="inline-block text-16-regular mt-[52px] mb-9">
           <strong className="text-16-bold">{count}</strong>명이 작성했어요!
         </span>

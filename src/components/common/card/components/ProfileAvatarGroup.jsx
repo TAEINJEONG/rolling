@@ -1,7 +1,14 @@
 import { MAX_VISIBLE_PROFILES, PROFILE_OFFSET } from '../constants';
 
 const ProfileAvatarGroup = ({ images = [], totalCount }) => {
-  const visibleImages = images.slice(0, MAX_VISIBLE_PROFILES);
+  const getVisibleImages = (images, totalCount) => {
+    if (totalCount >= MAX_VISIBLE_PROFILES) {
+      return images.slice(0, MAX_VISIBLE_PROFILES);
+    }
+    return images.slice(0, totalCount);
+  };
+
+  const visibleImages = getVisibleImages(images, totalCount);
 
   return (
     <div className="mb-3 relative">
