@@ -63,7 +63,7 @@ const Message = () => {
   };
 
   return (
-    <form className="container max-w-[720px] mx-auto mt-[47px] flex flex-col ">
+    <form className="container mx-auto mt-[47px] flex flex-col px-5 sm:px-6 max-w-[720px]">
       {/*sender 입력창*/}
       <label htmlFor="sender-input" className="text-24-bold mb-3">
         From.
