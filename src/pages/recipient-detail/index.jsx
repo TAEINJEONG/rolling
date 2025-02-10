@@ -77,13 +77,7 @@ const Detail = () => {
       fetchRecipientData();
       fetchRecipientReactionsData();
     }
-  }, [id]);
-
-  useEffect(() => {
-    if (location) {
-      fetchRecipientData();
-    }
-  }, [location]);
+  }, [id, location.pathname]);
 
   if (error) return <p>오류 발생: {error.message}</p>;
 

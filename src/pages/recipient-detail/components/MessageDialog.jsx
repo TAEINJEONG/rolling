@@ -2,11 +2,14 @@ import React from 'react';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { useLocation } from 'react-router-dom';
 import Button from '../../../components/common/button/index';
-import trash from '../../../assets/images/trash.svg';
+import Card from '../../../components/common/card/components/FromCard';
 
 const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage, onDelete }) => {
-  const location = useLocation();
-  const path = location.pathname.endsWith('/edit');
+  const useIsEditPage = () => {
+    const location = useLocation();
+    return location.pathname.endsWith('/edit');
+  };
+
   const onConfirmDeleteData = (e) => {
     e.stopPropagation();
     const deleteData = {
@@ -16,6 +19,8 @@ const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage, onDele
     onDelete(deleteData);
   };
 
+  const isEditPage = useIsEditPage();
+
   return (
     <div>
       <Dialog
@@ -24,16 +29,18 @@ const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage, onDele
         className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/60 z-100"
       >
         <DialogPanel>
-          <div className="bg-white rounded-[16px] p-4">
-            {path && <Button variant="icon" icon={trash} onClick={onConfirmDeleteData} />}
-
+          <div>
             {dialogVisible && (
-              <div>
-                <span className="block">{selectedMessage.profileImageURL}</span>
-                <span className="block">{selectedMessage.sender}</span>
-                <span className="block">{selectedMessage.relationship}</span>
-                <span className="block">{selectedMessage.content}</span>
-              </div>
+              <Card
+                name={selectedMessage.sender}
+                getBadgeStyle={selectedMessage.relationship}
+                relationship={selectedMessage.relationship}
+                profileImage={selectedMessage.profileImageURL}
+                messageContent={selectedMessage.content}
+                createdAtMessage={selectedMessage.createdAt}
+                isShowDeleteButton={isEditPage}
+                onDelete={onConfirmDeleteData}
+              />
             )}
 
             <Button size="sm" variant="primary" disabled={false} onClick={dialogInVisible}>
