@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import RecipientMessageContainer from './components/RecipientMessageContainer';
 import HeaderService from './components/HeaderService';
@@ -27,13 +27,15 @@ const Detail = () => {
     green: 'bg-green-200',
   };
 
-  const fetchRecipientData = async () => {
+  const fetchRecipientData = useCallback(async () => {
     try {
       setLoading(true);
       const recipientResponse = await api.getRecipientById('13-2', id);
-      console.log(recipientResponse.data);
+      const recipientReactions = await api.getRecipientsReactions('13-2', id);
       const recipientMessagesResponse = await api.getRecipientsMessages('13-2', id, 0, 5);
+
       setRecipient(recipientResponse.data);
+      setReactions(recipientReactions.data);
       setRecipientMessages(recipientMessagesResponse.data.results);
       setHasMore(recipientMessagesResponse.data.results.length === 5);
       setOffset(5);
@@ -44,16 +46,7 @@ const Detail = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const fetchRecipientReactionsData = async () => {
-    try {
-      const recipientReactions = await api.getRecipientsReactions('13-2', id);
-      setReactions(recipientReactions.data);
-    } catch (e) {
-      console.error('API 호출 중 오류 발생:', e);
-    }
-  };
+  }, [id]);
 
   const loadMoreData = async () => {
     try {
@@ -74,11 +67,8 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    if (id) {
-      fetchRecipientData();
-      fetchRecipientReactionsData();
-    }
-  }, [id, location]);
+    fetchRecipientData();
+  }, [fetchRecipientData, location]);
 
   if (error) return <p>오류 발생: {error.message}</p>;
 
@@ -149,7 +139,7 @@ const Detail = () => {
         recipient={recipient} // 대상 데이터
         messages={recipientMessages} // 대상의 메세지 데이터들
         reactions={reactions} // 대상의 이모지 데이터
-        onUpdate={fetchRecipientReactionsData}
+        // onUpdate={fetchRecipientReactionsData}
         onConfirmDelete={openConfrimDialog} // 삭제 dialog를 여는 기능
       />
       {error ? (

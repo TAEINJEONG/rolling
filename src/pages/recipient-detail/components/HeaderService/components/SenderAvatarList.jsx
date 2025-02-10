@@ -26,13 +26,13 @@ const SenderAvatarList = ({ messages, recipient }) => {
                 left: `${3 * 16}px`,
               }}
             >
-              +{recipient?.count}
+              +{recipient?.messageCount}
             </div>
           )}
         </div>
         <div className="flex">
           <p className="text-18-regular text-gray-900">
-            <span className="text-18-bold">{recipient?.count}</span>
+            <span className="text-18-bold">{recipient?.messageCount}</span>
             명이 작성했어요!
           </p>
           <div className="mx-[13px] bg-gray-100 w-[1px] h-7"></div>

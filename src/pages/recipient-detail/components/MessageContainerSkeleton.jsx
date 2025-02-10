@@ -9,7 +9,9 @@ const MessageCotainerSkeleton = () => {
       md:pt-[113px]
     "
     >
-      <div className="flex justify-end mb-[11px]"></div>
+      <div className="flex justify-end mb-[11px]">
+        <Skeleton className="h-[40px] px-6 rounded-md text-16-regular leading-6.5 tracking-[-0.01em]" />
+      </div>
       <div
         className="
           w-full grid grid-cols-1 grid-rows-6 gap-y-4
@@ -17,7 +19,10 @@ const MessageCotainerSkeleton = () => {
         "
       >
         {[1, 2, 3, 4, 5, 6].map((i) => (
-          <Skeleton key={i} />
+          <Skeleton
+            key={i}
+            className="w-full h-57.5 sm:w-full sm:h-57.5 md:h-71 lg:h-71 xl:w-96 xl:h-71 2xl:h-71"
+          />
         ))}
       </div>
     </div>
