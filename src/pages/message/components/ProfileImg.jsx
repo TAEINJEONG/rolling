@@ -1,8 +1,10 @@
 import ErrorMessage from './ErrorMessage';
 import Skeleton from '../../../components/common/skeleton';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading }) => {
+  const ImageInputRef = useRef(null);
+
   useEffect(() => {
     if (images && images.length > 0) {
       setProfileImg(images[0]);
@@ -24,12 +26,36 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
           />
         ));
 
+  // 미리보기 이미지 클릭 시 실행되는 함수
+  const handleProfileClick = (e) => {
+    if (e.target.src === images[0]) {
+      ImageInputRef.current.click(); // 파일 선택창 열기
+    } else {
+      setProfileImg(images[0]); // 프로필 이미지 초기화
+    }
+  };
+
+  const handleImgChange = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImg(imageUrl);
+    }
+  };
+
   return (
     <div className="flex py-2">
       <img
         src={profileImg}
         className="mr-8 w-20 h-20 rounded-full cursor-pointer"
-        onClick={(e) => setProfileImg(images[0])} // 클릭 시 프로필 이미지 제거
+        onClick={handleProfileClick}
+      />
+      <input
+        type="file"
+        ref={ImageInputRef}
+        style={{ display: 'none' }}
+        onChange={handleImgChange}
       />
       <div>
         <p className="text-[#555555] mb-3 ">프로필 이미지를 선택해주세요!</p>
