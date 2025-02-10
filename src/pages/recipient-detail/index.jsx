@@ -31,11 +31,9 @@ const Detail = () => {
     try {
       setLoading(true);
       const recipientResponse = await api.getRecipientById('13-2', id);
-      const recipientReactions = await api.getRecipientsReactions('13-2', id);
       const recipientMessagesResponse = await api.getRecipientsMessages('13-2', id, 0, 5);
 
       setRecipient(recipientResponse.data);
-      setReactions(recipientReactions.data);
       setRecipientMessages(recipientMessagesResponse.data.results);
       setHasMore(recipientMessagesResponse.data.results.length === 5);
       setOffset(5);
@@ -45,6 +43,15 @@ const Detail = () => {
       setHasMore(false);
     } finally {
       setLoading(false);
+    }
+  }, [id]);
+
+  const fetchRecipientReactionsData = useCallback(async () => {
+    try {
+      const recipientReactions = await api.getRecipientsReactions('13-2', id);
+      setReactions(recipientReactions.data);
+    } catch (e) {
+      console.error('API 호출 중 오류 발생:', e);
     }
   }, [id]);
 
@@ -68,7 +75,8 @@ const Detail = () => {
 
   useEffect(() => {
     fetchRecipientData();
-  }, [fetchRecipientData, location]);
+    fetchRecipientReactionsData();
+  }, [fetchRecipientData, fetchRecipientReactionsData, location]);
 
   if (error) return <p>오류 발생: {error.message}</p>;
 
@@ -124,11 +132,16 @@ const Detail = () => {
 
   return (
     <div
-      className={`w-full min-h-screen bg-cover bg-center${recipient?.backgroundColor ? backgroundColorSheet[recipient.backgroundColor] : ''}`}
+      className={`w-full min-h-screen ${
+        !recipient?.backgroundImageURL && recipient?.backgroundColor
+          ? backgroundColorSheet[recipient.backgroundColor]
+          : ''
+      }`}
       style={{
         backgroundImage: recipient?.backgroundImageURL
           ? `url(${recipient.backgroundImageURL})`
           : 'none',
+
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
@@ -139,7 +152,7 @@ const Detail = () => {
         recipient={recipient} // 대상 데이터
         messages={recipientMessages} // 대상의 메세지 데이터들
         reactions={reactions} // 대상의 이모지 데이터
-        // onUpdate={fetchRecipientReactionsData}
+        onUpdate={fetchRecipientReactionsData}
         onConfirmDelete={openConfrimDialog} // 삭제 dialog를 여는 기능
       />
       {error ? (
