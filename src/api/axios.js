@@ -28,7 +28,7 @@ const apiRoutes = {
   // Recipients
   recipients: {
     list: (team, offset, limit) => `/${team}/recipients/${buildOffsetLimitQuery(offset, limit)}`,
-    detail: (team) => `/${team}/recipients/`,
+    detail: (team, recipientId) => `/${team}/recipients/${recipientId ? `${recipientId}/` : ''}`,
     messages: (team, recipientId, offset, limit) =>
       `/${team}/recipients/${recipientId}/messages/${buildOffsetLimitQuery(offset, limit)}`,
     reactions: (team, recipientId, offset, limit) =>
