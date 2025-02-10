@@ -50,7 +50,7 @@ const Landing = () => {
         />
       </div>
       <div className="py-6 sticky bottom-0 xl:static">
-        <Button variant="primary" size="lg" fullWidth>
+        <Button variant="primary" size="lg" onClick={() => navigate('/list')} fullWidth>
           구경해보기
         </Button>
       </div>
