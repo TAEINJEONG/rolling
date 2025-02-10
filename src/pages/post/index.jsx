@@ -40,29 +40,18 @@ const Post = () => {
   const createRolling = async (e) => {
     e.preventDefault();
 
-    if (!post.trim()) {
-      setValueError(true);
-      return;
-    }
-
-    const requestData = {
-      name: post.trim(),
+    const NEW_PAGE = {
+      name: post,
       backgroundColor: selectedTab === 'color' ? selectedColor : 'beige',
       backgroundImageURL: selectedTab === 'image' ? selectedImage : null,
     };
 
-    console.log('API 호출 전 데이터:', requestData);
+    console.log('API 호출 전 데이터:', NEW_PAGE);
 
-    try {
-      const response = await api.postRecipients('13-2', requestData);
-      const createdId = response.data.id;
-      if (createdId) {
-        navigate(`/post/${createdId}`);
-      } else {
-        console.error('응답에 ID가 없습니다:', response.data);
-      }
-    } catch (error) {
-      console.error('페이지 생성 실패:', error.response?.data || error.message);
+    const response = await api.postRecipients('13-2', NEW_PAGE);
+    const createdId = response.data.id;
+    if (createdId) {
+      navigate(`/post/${createdId}`);
     }
   };
 
