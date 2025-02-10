@@ -8,7 +8,7 @@ export const apiClient = axios.create({
 });
 
 export const fileClient = axios.create({
-  baseURL: 'https://rolling-api.vercel.app',
+  baseURL: 'https://fandom-k-api.vercel.app',
   headers: {
     'Content-Type': 'multipart/form-data',
   },
