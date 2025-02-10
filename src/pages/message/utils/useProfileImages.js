@@ -14,7 +14,7 @@ export const useProfileImages = () => {
         setImages(response.data.imageUrls);
         setTimeout(() => {
           setIsLoading(false);
-        }, 500);
+        }, 300);
         setRequestError(false);
       } catch (e) {
         setRequestError(true);
