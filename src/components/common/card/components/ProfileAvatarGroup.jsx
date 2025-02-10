@@ -18,9 +18,13 @@ const ProfileAvatarGroup = ({ images = [], totalCount }) => {
           </>
         );
       })}
-      <div className="absolute h-7 translate-x-12 z-5 bg-white rounded-[30px] px-1.5 flex items-center justify-center">
-        {totalCount > MAX_VISIBLE_PROFILES ? `+${totalCount - MAX_VISIBLE_PROFILES}` : totalCount}
-      </div>
+      {totalCount > MAX_VISIBLE_PROFILES && (
+        <div
+          className={`absolute h-7 translate-x-12 z-5 bg-white rounded-[30px] px-1.5 flex items-center justify-center`}
+        >
+          {`+${totalCount - MAX_VISIBLE_PROFILES}`}
+        </div>
+      )}
     </div>
   );
 };
