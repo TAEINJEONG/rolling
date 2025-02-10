@@ -4,6 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Button from '../../../components/common/button/index';
 import Card from '../../../components/common/card/components/FromCard';
 import AddCard from '../../../components/common/card/components/AddCard';
+import MessageContainerSkeleton from './MessageContainerSkeleton';
 
 // 현재 pathName이 /edit인지 확인
 const useIsEditPage = () => {
@@ -76,6 +77,7 @@ const RecipientMessageContainer = ({
   hasMore,
   loadMoreData,
   selectMessage,
+  loading,
 }) => {
   const useIsEditPage = () => {
     const location = useLocation();
@@ -83,6 +85,11 @@ const RecipientMessageContainer = ({
   };
 
   const isEditPage = useIsEditPage();
+
+  if (loading) {
+    return <MessageContainerSkeleton />;
+  }
+
   return (
     <div
       className="
