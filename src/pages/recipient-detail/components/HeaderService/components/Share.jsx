@@ -49,7 +49,7 @@ const Share = ({ toggleShareMenu, isShareMenuVisible, closeShareMenu }) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [closeShareMenu]);
 
   return (
     <div>
@@ -63,7 +63,9 @@ const Share = ({ toggleShareMenu, isShareMenuVisible, closeShareMenu }) => {
 
         {isShareMenuVisible && (
           <div className="absolute right-0 mt-2 w-40 bg-white border text-left border-gray-300 rounded-lg shadow-lg z-1 overflow-hidden">
-            <Kakao />
+            <div onClick={closeShareMenu}>
+              <Kakao />
+            </div>
             <button
               className="px-4 py-3 w-full text-left hover:bg-gray-100 cursor-pointer text-16-regular"
               onClick={copyUrlToClipboard}

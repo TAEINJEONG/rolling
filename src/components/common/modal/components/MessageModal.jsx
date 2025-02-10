@@ -1,5 +1,7 @@
 import { getBadgeStyle } from '../../card/badgeStyle';
 import Modal from '../index';
+import trash from '../../../../assets/images/trash.svg';
+import Button from '../../button/index';
 import '../scrollStyle.css';
 
 function MessageModal({
@@ -8,7 +10,9 @@ function MessageModal({
   relationship,
   messageContent,
   createdAtMessage,
+  isShowDeleteButton,
   onClose,
+  onDelete,
 }) {
   const formattedDate = createdAtMessage?.split('T')[0].split('-').slice(0, 3).join('.');
   const badgeStyle = getBadgeStyle(relationship);
@@ -30,10 +34,11 @@ function MessageModal({
         <p className="text-14-regular leading-5 tracking-[-0.005em] text-gray-400">
           {formattedDate}
         </p>
+        {isShowDeleteButton && <Button variant="icon" icon={trash} onClick={onDelete} />}
       </div>
-      <span className="modal-content w-[520px] max-h-[240px] block text-18-regular leading-7 tracking-[-0.01em] text-gray-600 flex-1 overflow-y-auto">
+      <p className="modal-content w-full max-w-[520px] max-h-[240px] block text-18-regular leading-7 tracking-[-0.01em] text-gray-600 flex-1 overflow-y-auto">
         {messageContent}
-      </span>
+      </p>
     </Modal>
   );
 }

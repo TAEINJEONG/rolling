@@ -20,13 +20,13 @@ function Modal({ children, onClose }) {
 
   return (
     <div
-      className="fixed bg-black/50 inset-0 flex justify-center items-center"
+      className="fixed bg-black/50 inset-0 flex justify-center items-center px-5 z-100"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
       <section
-        className="box-border w-[600px] bg-white rounded-2xl shadow-[0_2px_12px_0_rgba(0,0,0,0.08)]"
+        className="box-border w-full max-w-[600px] bg-white rounded-2xl shadow-[0_2px_12px_0_rgba(0,0,0,0.08)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-10">

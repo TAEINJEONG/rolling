@@ -147,6 +147,7 @@ const Detail = () => {
       ) : (
         <>
           <RecipientMessageContainer
+            id={id}
             messages={recipientMessages}
             onConfirmDelete={openConfrimDialog}
             hasMore={hasMore}
