@@ -2,27 +2,14 @@ import React, { useState } from 'react';
 import { useLocation, useParams, Link, useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Button from '../../../components/common/button/index';
-import trash from '../../../assets/images/trash.svg';
+import Card from '../../../components/common/card/components/FromCard';
+import AddCard from '../../../components/common/card/components/AddCard';
+import MessageContainerSkeleton from './MessageContainerSkeleton';
 
 // 현재 pathName이 /edit인지 확인
 const useIsEditPage = () => {
   const location = useLocation();
   return location.pathname.endsWith('/edit');
-};
-
-// /edit 이면 쓰래기통 버튼 보임
-const TrashButton = ({ message, onDelete }) => {
-  const isEditPage = useIsEditPage();
-  // 이벤트 버블링을 막고 deleteData를 props에 담음
-  const onConfirmDelete = (e) => {
-    e.stopPropagation();
-    const deleteData = {
-      type: 'message',
-      id: message.id,
-    };
-    onDelete(deleteData);
-  };
-  return isEditPage ? <Button variant="icon" icon={trash} onClick={onConfirmDelete} /> : null;
 };
 
 // /edit 이면 뒤로가기 버튼 보임
@@ -51,18 +38,38 @@ const EditButton = () => {
   );
 };
 
-const RecipientMessage = ({ message, onMessageSelect, onDelete }) => (
-  <div
-    className="
-      w-full h-57.5 sm:w-full sm:h-57.5 md:h-71 lg:h-71 xl:w-96 xl:h-71 2xl:h-71
-      bg-white rounded-[16px] drop-shadow-xs cursor-pointer
-    "
-    onClick={onMessageSelect}
-  >
-    <TrashButton message={message} onDelete={onDelete} />
-    <h3>{message.content}</h3>
-  </div>
-);
+const RecipientMessage = ({ message, onMessageSelect, onDelete }) => {
+  const useIsEditPage = () => {
+    const location = useLocation();
+    return location.pathname.endsWith('/edit');
+  };
+
+  const isEditPage = useIsEditPage();
+
+  const handleOnDelete = (e) => {
+    e.stopPropagation();
+    const deleteData = {
+      type: 'message',
+      id: message.id,
+    };
+    onDelete(deleteData);
+  };
+
+  return (
+    <div onClick={onMessageSelect} className="cursor-pointer">
+      <Card
+        name={message.sender}
+        getBadgeStyle={message.relationship}
+        relationship={message.relationship}
+        profileImage={message.profileImageURL}
+        messageContent={message.content}
+        createdAtMessage={message.createdAt}
+        isShowDeleteButton={isEditPage}
+        onDelete={handleOnDelete}
+      />
+    </div>
+  );
+};
 
 const RecipientMessageContainer = ({
   messages,
@@ -70,7 +77,19 @@ const RecipientMessageContainer = ({
   hasMore,
   loadMoreData,
   selectMessage,
+  loading,
 }) => {
+  const useIsEditPage = () => {
+    const location = useLocation();
+    return location.pathname.endsWith('/edit');
+  };
+
+  const isEditPage = useIsEditPage();
+
+  if (loading) {
+    return <MessageContainerSkeleton />;
+  }
+
   return (
     <div
       className="
@@ -90,14 +109,7 @@ const RecipientMessageContainer = ({
             sm:gap-4 md:w-full md:grid-cols-2 md:grid-rows-3 md:gap-x-4 md:gap-y-4 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-6 lg:gap-y-7
           "
         >
-          <div
-            className="
-              w-full h-57.5 sm:w-full sm:h-57.5 md:h-71 lg:h-71 xl:w-96 xl:h-71 2xl:h-71
-              bg-white rounded-[16px] drop-shadow-xs cursor-pointer
-            "
-          >
-            <span>test</span>
-          </div>
+          {!isEditPage && <AddCard />}
           {messages?.map((message, index) => (
             <RecipientMessage
               key={index}
