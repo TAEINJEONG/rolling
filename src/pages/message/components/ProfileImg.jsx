@@ -1,10 +1,11 @@
 import ErrorMessage from './ErrorMessage';
 import Skeleton from '../../../components/common/skeleton';
 import api from '../../../api/axios';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading }) => {
   const ImageInputRef = useRef(null);
+  const [isImgValidSize, setIsImgValidSize] = useState(true);
 
   useEffect(() => {
     if (images && images.length > 0) {
@@ -28,17 +29,26 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
         ));
 
   // 미리보기 이미지 클릭 시 실행
-  const handleProfileClick = (e) => {
+  const handleProfileImgClick = (e) => {
     if (e.target.src === images[0]) {
-      ImageInputRef.current.click(); // 파일 선택창 열기
+      // 파일 선택창 열림
+      ImageInputRef.current.click();
     } else {
-      setProfileImg(images[0]); // 프로필 이미지 초기화
+      // 프로필 이미지 삭제
+      setProfileImg(images[0]);
     }
   };
 
   // 원하는 파일을 프로필 이미지로 저장
-  const handleImgChange = async (e) => {
+  const handleProfileImgChange = async (e) => {
     const file = e.target.files[0];
+
+    if (file.size > 5242880) {
+      setIsImgValidSize(false); // 파일 크기가 5mb 이상
+      return;
+    } else {
+      setIsImgValidSize(true); // 유효한 크기 업로드 시 에러 상태 초기화
+    }
 
     if (file) {
       const formData = new FormData();
@@ -58,17 +68,20 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
       <img
         src={profileImg}
         className="mr-8 w-20 h-20 rounded-full cursor-pointer"
-        onClick={handleProfileClick}
+        onClick={handleProfileImgClick}
       />
       <input
         type="file"
         ref={ImageInputRef}
-        accept="image/jpeg, image/png, image/jpg"
         style={{ display: 'none' }}
-        onChange={handleImgChange}
+        onChange={handleProfileImgChange}
       />
       <div>
-        <p className="text-[#555555] mb-3 ">프로필 이미지를 선택해주세요!</p>
+        {isImgValidSize ? (
+          <p className="text-[#555555] mb-3 ">프로필 이미지를 선택해주세요!</p>
+        ) : (
+          <ErrorMessage text={'이미지는 5MB 이하여야 합니다'} />
+        )}
         {requestError ? (
           <ErrorMessage text={'이미지를 불러오는 데에 실패했습니다'} />
         ) : (
