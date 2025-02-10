@@ -72,6 +72,7 @@ const RecipientMessage = ({ message, onMessageSelect, onDelete }) => {
 };
 
 const RecipientMessageContainer = ({
+  id,
   messages,
   onConfirmDelete,
   hasMore,
@@ -109,7 +110,7 @@ const RecipientMessageContainer = ({
             sm:gap-4 md:w-full md:grid-cols-2 md:grid-rows-3 md:gap-x-4 md:gap-y-4 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-6 lg:gap-y-7
           "
         >
-          {!isEditPage && <AddCard />}
+          {!isEditPage && <AddCard id={id} />}
           {messages?.map((message, index) => (
             <RecipientMessage
               key={index}
