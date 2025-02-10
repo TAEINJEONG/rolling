@@ -11,7 +11,7 @@ const ConfrimDialog = ({ openConfrimDialog, closeConfrimDialog, confirmDeletion 
         className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/60 z-100"
       >
         <DialogPanel>
-          <div className="bg-white rounded-[16px] p-4">
+          <div className="bg-white rounded-[16px] p-6">
             <div className="pb-6">
               <p className="text-center text-20-bold mb-2">삭제하시겠습니까?</p>
               <p className="text-18-regular text-center">

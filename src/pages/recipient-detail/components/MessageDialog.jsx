@@ -1,8 +1,6 @@
 import React from 'react';
-import { Dialog, DialogPanel } from '@headlessui/react';
 import { useLocation } from 'react-router-dom';
-import Button from '../../../components/common/button/index';
-import Card from '../../../components/common/card/components/FromCard';
+import Modal from '../../../components/common/modal/components/MessageModal';
 
 const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage, onDelete }) => {
   const useIsEditPage = () => {
@@ -23,32 +21,18 @@ const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage, onDele
 
   return (
     <div>
-      <Dialog
-        open={dialogVisible}
-        onClose={dialogInVisible}
-        className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/60 z-100"
-      >
-        <DialogPanel>
-          <div>
-            {dialogVisible && (
-              <Card
-                name={selectedMessage.sender}
-                getBadgeStyle={selectedMessage.relationship}
-                relationship={selectedMessage.relationship}
-                profileImage={selectedMessage.profileImageURL}
-                messageContent={selectedMessage.content}
-                createdAtMessage={selectedMessage.createdAt}
-                isShowDeleteButton={isEditPage}
-                onDelete={onConfirmDeleteData}
-              />
-            )}
-
-            <Button size="sm" variant="primary" disabled={false} onClick={dialogInVisible}>
-              확인
-            </Button>
-          </div>
-        </DialogPanel>
-      </Dialog>
+      {dialogVisible && (
+        <Modal
+          name={selectedMessage.sender}
+          profileImage={selectedMessage.profileImageURL}
+          relationship={selectedMessage.relationship}
+          messageContent={selectedMessage.content}
+          createdAtMessage={selectedMessage.createdAt}
+          onClose={dialogInVisible}
+          isShowDeleteButton={isEditPage}
+          onDelete={onConfirmDeleteData}
+        />
+      )}
     </div>
   );
 };

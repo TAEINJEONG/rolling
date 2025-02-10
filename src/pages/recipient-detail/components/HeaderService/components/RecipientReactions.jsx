@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import ArrowDown from '../../../../../assets/images/arrow_down.svg';
-import ReactionsList from '../../../../../components/common/card/components/ReactionsList';
 
 const RecipientReactions = ({
   isReactionsMenuVisible,
@@ -30,15 +29,17 @@ const RecipientReactions = ({
           className="flex justify-center items-center gap-x-2 mr-2 cursor-pointer"
           onClick={toggleReaction}
         >
-          {reactions?.results.slice(0, 3).map((emoji) => (
-            <div
-              key={emoji?.emoji}
-              className="flex items-center rounded-[32px] px-3 py-2 bg-black/54 text-white"
-            >
-              <div className="mr-1">{emoji?.emoji}</div>
-              <div className="text-14-regular">{emoji?.count}</div>
-            </div>
-          ))}
+          <div className="gap-x-2 mr-2 flex max-[440px]:hidden justify-center items-center ">
+            {reactions?.results.slice(0, 3).map((emoji) => (
+              <div
+                key={emoji?.emoji}
+                className="flex items-center rounded-[32px] px-3 py-2 bg-black/54 text-white"
+              >
+                <div className="mr-1">{emoji?.emoji}</div>
+                <div className="text-14-regular">{emoji?.count}</div>
+              </div>
+            ))}
+          </div>
           <img src={ArrowDown} className="w-6 h-6" />
         </div>
 
@@ -51,7 +52,7 @@ const RecipientReactions = ({
               mt-2 p-6 w-78
               bg-white border text-left border-gray-300 
               rounded-lg shadow-lg z-1 overflow-hidden
-            "
+              "
           >
             {reactions?.results.slice(0, 8).map((emoji) => (
               <div
