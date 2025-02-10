@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 export const useProfileImages = () => {
   const [images, setImages] = useState([]);
   const [requestError, setRequestError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // 예시 프로필 이미지 요청
   useEffect(() => {
@@ -15,12 +16,14 @@ export const useProfileImages = () => {
       } catch (e) {
         setRequestError(true);
         console.error(e);
+      } finally {
+        setLoading(false);
       }
     };
     getProfileImages();
   }, []);
 
-  return { images, requestError };
+  return { images, requestError, loading };
 };
 
 export default useProfileImages;
