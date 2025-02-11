@@ -23,7 +23,7 @@ const CarouselContent = ({ currentIndex, papers, profileImages }) => {
               profileImages={profileImages}
               count={paper.messageCount}
               bgColor={paper.backgroundColor}
-              bgImage={paper.backgroundImageUrl}
+              bgImage={paper.backgroundImageURL}
               reactions={paper.topReactions}
             />
           </Link>
