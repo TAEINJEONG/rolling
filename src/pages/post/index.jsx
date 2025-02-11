@@ -115,7 +115,8 @@ const Post = () => {
               className={clsx(
                 'px-5 py-2 text-sm font-semibold border-2 rounded-md transition-all mt-2 mb-2',
                 selectedTab === tab ? borderButton.selected : borderButton.default,
-                tab === 'color' ? 'rounded-r-none' : 'rounded-l-none'
+                tab === 'color' ? 'rounded-r-none' : 'rounded-l-none',
+                'cursor-pointer'
               )}
               onClick={() => setSelectedTab(tab)}
             >
@@ -145,8 +146,13 @@ const Post = () => {
 
         <Button
           type="submit"
-          disabled={post === ''}
-          className="w-full bg-purple-500 text-white py-4 rounded-xl hover:bg-purple-600 transition-colors text-xl mt-4 mb-4"
+          disabled={post.trim() === ''}
+          className={clsx(
+            'w-full py-4 rounded-xl transition-colors text-xl mt-4 mb-4',
+            post.trim() === ''
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-purple-500 text-white hover:bg-purple-600 cursor-pointer'
+          )}
         >
           생성하기
         </Button>
