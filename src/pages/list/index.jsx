@@ -114,7 +114,7 @@ const RollingPaperList = () => {
         onPrev={handleRecentPrev}
         itemsPerView={itemsPerView}
       />
-      <div className="xl:w-[280px] xl:mx-auto">
+      <div className="py-6 xl:w-[280px] xl:mx-auto">
         <Button variant="primary" size="lg" onClick={() => navigate('/post')} fullWidth>
           나도 만들어보기
         </Button>
