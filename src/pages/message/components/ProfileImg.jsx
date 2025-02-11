@@ -8,7 +8,7 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
   const [isImgValidSize, setIsImgValidSize] = useState(true);
 
   useEffect(() => {
-    if (images && images.length > 0) {
+    if (images?.length > 0) {
       setProfileImg(images[0]);
     }
   }, [images]);
@@ -24,30 +24,34 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
             key={src}
             src={src}
             className="w-14 h-14 rounded-full mr-1 cursor-pointer"
-            onClick={(e) => setProfileImg(e.target.currentSrc)}
+            onClick={() => setProfileImg(src)}
           />
         ));
 
   // 미리보기 이미지 클릭 시 실행
   const handleProfileImgClick = (e) => {
-    if (e.target.src === images[0]) {
-      // 파일 선택창 열림
-      ImageInputRef.current.click();
+    const isDefaultImage = e.target.src === images[0]; // true or false
+    isDefaultImage ? ImageInputRef.current.click() : setProfileImg(images[0]);
+  };
+
+  const isFileValidSize = (file) => {
+    const LIMIT_FILE_SIZE = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > LIMIT_FILE_SIZE) {
+      setIsImgValidSize(false);
+      return false;
     } else {
-      // 프로필 이미지 삭제
-      setProfileImg(images[0]);
+      setIsImgValidSize(true); // 유효한 크기 업로드 시 에러 상태 초기화
+      return true;
     }
   };
 
   // 원하는 파일을 프로필 이미지로 저장
   const handleProfileImgChange = async (e) => {
     const file = e.target.files[0];
+    e.target.value = ''; // 파일 입력값 초기화
 
-    if (file.size > 5242880) {
-      setIsImgValidSize(false); // 파일 크기가 5mb 이상
+    if (!isFileValidSize(file)) {
       return;
-    } else {
-      setIsImgValidSize(true); // 유효한 크기 업로드 시 에러 상태 초기화
     }
 
     if (file) {
@@ -73,7 +77,8 @@ const ProfileImg = ({ images, profileImg, setProfileImg, requestError, isLoading
       <input
         type="file"
         ref={ImageInputRef}
-        style={{ display: 'none' }}
+        className="hidden"
+        accept="images/*"
         onChange={handleProfileImgChange}
       />
       <div>

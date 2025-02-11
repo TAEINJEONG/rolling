@@ -6,7 +6,7 @@ import Message from '../pages/message';
 import Detail from '../pages/recipient-detail';
 import ToPost from '../pages/post';
 import Landing from '../pages/landing';
-
+import ErrorPage from '../pages/error';
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -18,6 +18,7 @@ const AppRouter = () => {
           <Route path="/post" element={<ToPost />} />
           <Route path="/post/:id" element={<Detail />} />
           <Route path="/post/:id/edit" element={<Detail />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
