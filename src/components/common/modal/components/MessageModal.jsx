@@ -1,4 +1,5 @@
 import { getBadgeStyle } from '../../card/badgeStyle';
+import parse from 'html-react-parser';
 import Modal from '../index';
 import trash from '../../../../assets/images/trash.svg';
 import Button from '../../button/index';
@@ -36,9 +37,9 @@ function MessageModal({
         </p>
         {isShowDeleteButton && <Button variant="icon" icon={trash} onClick={onDelete} />}
       </div>
-      <p className="modal-content w-full max-w-[520px] max-h-[240px] block text-18-regular leading-7 tracking-[-0.01em] text-gray-600 flex-1 overflow-y-auto">
-        {messageContent}
-      </p>
+      <span className="modal-content w-full max-w-[520px] max-h-[240px] block text-18-regular leading-7 tracking-[-0.01em] text-gray-600 flex-1 overflow-y-auto">
+        {messageContent && parse(messageContent)}
+      </span>
     </Modal>
   );
 }

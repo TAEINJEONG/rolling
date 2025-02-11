@@ -14,15 +14,13 @@ const ProfileAvatarGroup = ({ images = [], totalCount }) => {
     <div className="mb-3 relative">
       {visibleImages.map((image, index) => {
         return (
-          <>
-            <img
-              key={`profile-${index}`}
-              src={image}
-              alt={`Profile ${index + 1}`}
-              className="absolute w-7 h-7 rounded-full border-2 border-white"
-              style={{ zIndex: index + 1, transform: `translateX(${index * PROFILE_OFFSET}px)` }}
-            />
-          </>
+          <img
+            key={`profile-${index}`}
+            src={image}
+            alt={`Profile ${index + 1}`}
+            className="absolute w-7 h-7 rounded-full border-2 border-white"
+            style={{ zIndex: index + 1, transform: `translateX(${index * PROFILE_OFFSET}px)` }}
+          />
         );
       })}
       {totalCount > MAX_VISIBLE_PROFILES && (
