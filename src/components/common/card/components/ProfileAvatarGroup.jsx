@@ -1,7 +1,14 @@
 import { MAX_VISIBLE_PROFILES, PROFILE_OFFSET } from '../constants';
 
 const ProfileAvatarGroup = ({ images = [], totalCount }) => {
-  const visibleImages = images.slice(0, MAX_VISIBLE_PROFILES);
+  const getVisibleImages = (images, totalCount) => {
+    if (totalCount >= MAX_VISIBLE_PROFILES) {
+      return images.slice(0, MAX_VISIBLE_PROFILES);
+    }
+    return images.slice(0, totalCount);
+  };
+
+  const visibleImages = getVisibleImages(images, totalCount);
 
   return (
     <div className="mb-3 relative">
@@ -18,9 +25,13 @@ const ProfileAvatarGroup = ({ images = [], totalCount }) => {
           </>
         );
       })}
-      <div className="absolute h-7 translate-x-12 z-5 bg-white rounded-[30px] px-1.5 flex items-center justify-center">
-        {totalCount > MAX_VISIBLE_PROFILES ? `+${totalCount - MAX_VISIBLE_PROFILES}` : totalCount}
-      </div>
+      {totalCount > MAX_VISIBLE_PROFILES && (
+        <div
+          className={`absolute h-7 translate-x-12 z-5 bg-white rounded-[30px] px-1.5 flex items-center justify-center`}
+        >
+          {`+${totalCount - MAX_VISIBLE_PROFILES}`}
+        </div>
+      )}
     </div>
   );
 };

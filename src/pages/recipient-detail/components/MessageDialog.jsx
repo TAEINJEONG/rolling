@@ -1,9 +1,13 @@
 import React from 'react';
-import { Dialog, DialogPanel } from '@headlessui/react';
-import Button from '../../../components/common/button/index';
-import trash from '../../../assets/images/trash.svg';
+import { useLocation } from 'react-router-dom';
+import Modal from '../../../components/common/modal/components/MessageModal';
 
 const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage, onDelete }) => {
+  const useIsEditPage = () => {
+    const location = useLocation();
+    return location.pathname.endsWith('/edit');
+  };
+
   const onConfirmDeleteData = (e) => {
     e.stopPropagation();
     const deleteData = {
@@ -13,31 +17,22 @@ const MessageDialog = ({ dialogVisible, dialogInVisible, selectedMessage, onDele
     onDelete(deleteData);
   };
 
+  const isEditPage = useIsEditPage();
+
   return (
     <div>
-      <Dialog
-        open={dialogVisible}
-        onClose={dialogInVisible}
-        className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/60 z-100"
-      >
-        <DialogPanel>
-          <div className="bg-white rounded-[16px] p-4">
-            <Button variant="icon" icon={trash} onClick={onConfirmDeleteData} />
-            {dialogVisible && (
-              <div>
-                <span className="block">{selectedMessage.profileImageURL}</span>
-                <span className="block">{selectedMessage.sender}</span>
-                <span className="block">{selectedMessage.relationship}</span>
-                <span className="block">{selectedMessage.content}</span>
-              </div>
-            )}
-
-            <Button size="sm" variant="primary" disabled={false} onClick={dialogInVisible}>
-              확인
-            </Button>
-          </div>
-        </DialogPanel>
-      </Dialog>
+      {dialogVisible && (
+        <Modal
+          name={selectedMessage.sender}
+          profileImage={selectedMessage.profileImageURL}
+          relationship={selectedMessage.relationship}
+          messageContent={selectedMessage.content}
+          createdAtMessage={selectedMessage.createdAt}
+          onClose={dialogInVisible}
+          isShowDeleteButton={isEditPage}
+          onDelete={onConfirmDeleteData}
+        />
+      )}
     </div>
   );
 };

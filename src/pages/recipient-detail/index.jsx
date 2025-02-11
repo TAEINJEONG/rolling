@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import RecipientMessageContainer from './components/RecipientMessageContainer';
 import HeaderService from './components/HeaderService';
@@ -27,11 +27,12 @@ const Detail = () => {
     green: 'bg-green-200',
   };
 
-  const fetchRecipientData = async () => {
+  const fetchRecipientData = useCallback(async () => {
     try {
       setLoading(true);
       const recipientResponse = await api.getRecipientById('13-2', id);
       const recipientMessagesResponse = await api.getRecipientsMessages('13-2', id, 0, 5);
+
       setRecipient(recipientResponse.data);
       setRecipientMessages(recipientMessagesResponse.data.results);
       setHasMore(recipientMessagesResponse.data.results.length === 5);
@@ -43,16 +44,16 @@ const Detail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
-  const fetchRecipientReactionsData = async () => {
+  const fetchRecipientReactionsData = useCallback(async () => {
     try {
       const recipientReactions = await api.getRecipientsReactions('13-2', id);
       setReactions(recipientReactions.data);
     } catch (e) {
       console.error('API 호출 중 오류 발생:', e);
     }
-  };
+  }, [id]);
 
   const loadMoreData = async () => {
     try {
@@ -73,17 +74,9 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    if (id) {
-      fetchRecipientData();
-      fetchRecipientReactionsData();
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (location) {
-      fetchRecipientData();
-    }
-  }, [location]);
+    fetchRecipientData();
+    fetchRecipientReactionsData();
+  }, [fetchRecipientData, fetchRecipientReactionsData, location]);
 
   if (error) return <p>오류 발생: {error.message}</p>;
 
@@ -139,11 +132,16 @@ const Detail = () => {
 
   return (
     <div
-      className={`w-full min-h-screen bg-cover bg-center${recipient?.backgroundColor ? backgroundColorSheet[recipient.backgroundColor] : ''}`}
+      className={`w-full min-h-screen ${
+        !recipient?.backgroundImageURL && recipient?.backgroundColor
+          ? backgroundColorSheet[recipient.backgroundColor]
+          : ''
+      }`}
       style={{
         backgroundImage: recipient?.backgroundImageURL
           ? `url(${recipient.backgroundImageURL})`
           : 'none',
+
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
@@ -157,18 +155,18 @@ const Detail = () => {
         onUpdate={fetchRecipientReactionsData}
         onConfirmDelete={openConfrimDialog} // 삭제 dialog를 여는 기능
       />
-      {loading ? (
-        <p className="text-center mt-10">로딩 중...</p>
-      ) : error ? (
+      {error ? (
         <p className="text-center text-red-500 mt-10">오류 발생: {error.message}</p>
       ) : (
         <>
           <RecipientMessageContainer
+            id={id}
             messages={recipientMessages}
             onConfirmDelete={openConfrimDialog}
             hasMore={hasMore}
             loadMoreData={loadMoreData}
             selectMessage={selectMessage}
+            loading={loading}
           />
           <MessageDialog
             dialogVisible={hasCurrentSelectedData} // 데이터를 기반으로 dialog을 보여줄지 결정

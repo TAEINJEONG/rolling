@@ -4,12 +4,14 @@ import RollingPaperCarousel from './components/RollingPaperCarousel';
 import RollingPaperCarouselSkeleton from './components/RollingPaperCarouselSkeleton';
 import Button from '../../components/common/button';
 import { useNavigate } from 'react-router-dom';
+
 const RollingPaperList = () => {
   const [rollingPapers, setRollingPapers] = useState([]);
   const [popularIndex, setPopularIndex] = useState(0);
   const [recentIndex, setRecentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [profileImages, setProfileImages] = useState([]);
   const navigate = useNavigate();
   const itemsPerView = 4;
 
@@ -37,20 +39,46 @@ const RollingPaperList = () => {
     setRecentIndex((prev) => Math.max(prev - 1, 0));
   };
 
+  const preloadImages = async (images) => {
+    const promises = images.map((imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = imageUrl;
+      });
+    });
+
+    try {
+      await Promise.all(promises);
+    } catch (error) {
+      console.error('이미지 프리로딩 중 오류 발생:', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchRollingPaperList = async () => {
+    const fetchListWithProfileImages = async () => {
       try {
         setLoading(true);
-        const response = await api.getRecipientsList('13-2');
-        const papers = response.data.results;
+        const [recipientsResponse, profileImagesResponse] = await Promise.all([
+          api.getRecipientsList('13-2'),
+          api.getProfileImages(),
+        ]);
+
+        const papers = recipientsResponse.data.results;
+        const images = profileImagesResponse.data.imageUrls;
+
+        await preloadImages(images);
+
         setRollingPapers(papers);
+        setProfileImages(images);
       } catch (error) {
         setError(error);
       } finally {
         setLoading(false);
       }
     };
-    fetchRollingPaperList();
+    fetchListWithProfileImages();
   }, []);
 
   if (loading) {
@@ -72,6 +100,7 @@ const RollingPaperList = () => {
         title="인기 롤링 페이퍼 🔥"
         papers={popularRollingPapers}
         currentIndex={popularIndex}
+        profileImages={profileImages}
         onNext={handlePopularNext}
         onPrev={handlePopularPrev}
         itemsPerView={itemsPerView}
@@ -80,6 +109,7 @@ const RollingPaperList = () => {
         title="최근에 만든 롤링 페이퍼 ⭐️️"
         papers={recentRollingPapers}
         currentIndex={recentIndex}
+        profileImages={profileImages}
         onNext={handleRecentNext}
         onPrev={handleRecentPrev}
         itemsPerView={itemsPerView}

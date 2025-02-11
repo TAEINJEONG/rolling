@@ -1,11 +1,14 @@
+import { useEffect, useState } from 'react';
 import Card from '../../../components/common/card';
 import { Link } from 'react-router-dom';
+import api from '../../../api/axios';
 const CARD_WIDTH = 295;
 
-const CarouselContent = ({ currentIndex, papers }) => {
+const CarouselContent = ({ currentIndex, papers, profileImages }) => {
   const getTransformStyle = (index) => ({
     transform: `translateX(-${index * CARD_WIDTH}px)`,
   });
+
   return (
     <div className="flex gap-5 max-w-[1160px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       <div
@@ -14,7 +17,15 @@ const CarouselContent = ({ currentIndex, papers }) => {
       >
         {papers.map((paper) => (
           <Link to={`/post/${paper.id}`} key={paper.id}>
-            <Card type="to" bgColor={paper.backgroundColor} bgImage={paper.backgroundImageUrl} />
+            <Card
+              type="to"
+              name={paper.name}
+              profileImages={profileImages}
+              count={paper.messageCount}
+              bgColor={paper.backgroundColor}
+              bgImage={paper.backgroundImageUrl}
+              reactions={paper.topReactions}
+            />
           </Link>
         ))}
       </div>

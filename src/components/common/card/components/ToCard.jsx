@@ -6,7 +6,26 @@ import purpleShape from '../../../../assets/images/purple.svg';
 import greenShape from '../../../../assets/images/green.svg';
 
 const ToCard = ({ name, profileImages = [], count = 0, reactions = [], bgColor, bgImage }) => {
-  const bgImageStyle = bgImage ? { backgroundImage: `url(${bgImage})` } : {};
+  const bgImageStyle = bgImage
+    ? {
+        backgroundImage: `linear-gradient(rgba(0 ,0, 0, 0.5) rgba(0, 0, 0, 0.5)), url(${bgImage})`,
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }
+    : {};
+  const getBgColor = () => {
+    if (bgColor === 'beige') {
+      return 'bg-beige-200';
+    } else if (bgColor === 'purple') {
+      return 'bg-purple-200';
+    } else if (bgColor === 'blue') {
+      return 'bg-blue-200';
+    } else if (bgColor === 'green') {
+      return 'bg-green-200';
+    }
+    return bgColor;
+  };
 
   const BACKGROUND_COLOR_SHAPE = [
     { color: 'beige', image: beigeShape },
@@ -29,7 +48,9 @@ const ToCard = ({ name, profileImages = [], count = 0, reactions = [], bgColor, 
         className="absolute bottom-0 right-0 z-[-1]"
       />
       <article className="px-6 pb-5 pt-7.5 z-10">
-        <h1 className="text-20-bold text-gray-900 mb-3">To. {name}</h1>
+        <h1 className={`text-20-bold ${bgImage ? 'text-white' : 'text-gray-900'} mb-3`}>
+          To. {name}
+        </h1>
         <ProfileAvatarGroup images={profileImages} totalCount={count} />
         <span className="inline-block text-16-regular mt-[52px] mb-9">
           <strong className="text-16-bold">{count}</strong>명이 작성했어요!
