@@ -37,7 +37,7 @@ function MessageModal({
         </p>
         {isShowDeleteButton && <Button variant="icon" icon={trash} onClick={onDelete} />}
       </div>
-      <span className="modal-content w-full max-w-[520px] max-h-[240px] block text-18-regular leading-7 tracking-[-0.01em] text-gray-600 flex-1 overflow-y-auto">
+      <span className="modal-content w-full max-w-[520px] min-h-[240px] block text-18-regular leading-7 tracking-[-0.01em] text-gray-600 flex-1 overflow-y-auto">
         {messageContent && parse(messageContent)}
       </span>
     </Modal>
