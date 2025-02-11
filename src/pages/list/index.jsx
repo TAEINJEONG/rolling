@@ -4,6 +4,7 @@ import RollingPaperCarousel from './components/RollingPaperCarousel';
 import RollingPaperCarouselSkeleton from './components/RollingPaperCarouselSkeleton';
 import Button from '../../components/common/button';
 import { useNavigate } from 'react-router-dom';
+import ErrorPage from '../error';
 
 const RollingPaperList = () => {
   const [rollingPapers, setRollingPapers] = useState([]);
@@ -61,7 +62,7 @@ const RollingPaperList = () => {
       try {
         setLoading(true);
         const [recipientsResponse, profileImagesResponse] = await Promise.all([
-          api.getRecipientsList('13-2'),
+          api.getRecipientsList('13-2', 0, 9999),
           api.getProfileImages(),
         ]);
 
@@ -73,13 +74,16 @@ const RollingPaperList = () => {
         setRollingPapers(papers);
         setProfileImages(images);
       } catch (error) {
+        if (error.response?.status === 404) {
+          navigate('/404');
+        }
         setError(error);
       } finally {
         setLoading(false);
       }
     };
     fetchListWithProfileImages();
-  }, []);
+  }, [navigate]);
 
   if (loading) {
     return (
@@ -91,7 +95,7 @@ const RollingPaperList = () => {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <ErrorPage />;
   }
 
   return (

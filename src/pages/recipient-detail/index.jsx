@@ -38,13 +38,14 @@ const Detail = () => {
       setHasMore(recipientMessagesResponse.data.results.length === 5);
       setOffset(5);
     } catch (e) {
-      console.error('API 호출 중 오류 발생:', e);
+      if (e.response?.status === 404) {
+        navigate('/404');
+      }
       setError(e);
-      setHasMore(false);
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [id, navigate]);
 
   const fetchRecipientReactionsData = useCallback(async () => {
     try {
