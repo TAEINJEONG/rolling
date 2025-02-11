@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
 import Card from '../../../components/common/card';
 import { Link } from 'react-router-dom';
-import api from '../../../api/axios';
 const CARD_WIDTH = 295;
 
 const CarouselContent = ({ currentIndex, papers, profileImages }) => {

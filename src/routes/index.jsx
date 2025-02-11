@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from '../pages/Layout';
 import RollingPaperList from '../pages/list';
 import Message from '../pages/message';
@@ -18,7 +18,8 @@ const AppRouter = () => {
           <Route path="/post" element={<ToPost />} />
           <Route path="/post/:id" element={<Detail />} />
           <Route path="/post/:id/edit" element={<Detail />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="/404" element={<ErrorPage />} />
+          <Route path="*" element={<Navigate replace to="/404" />} />
         </Route>
       </Routes>
     </BrowserRouter>

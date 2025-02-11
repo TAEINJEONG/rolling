@@ -8,6 +8,7 @@ import useProfileImages from './utils/useProfileImages';
 import api from '../../api/axios';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import ErrorPage from '../error';
 
 const Message = () => {
   const [sender, setSender] = useState('');
@@ -21,6 +22,7 @@ const Message = () => {
   const [isFormValid, setIsFormValid] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (e) => {
     setSender(e.target.value);
@@ -57,10 +59,17 @@ const Message = () => {
         navigate(`/post/${id}`);
       } catch (e) {
         console.error(e);
+        if (e.response?.status === 404) {
+          setIsError(true);
+        }
       }
     };
     postMessage();
   };
+
+  if (isError) {
+    return <ErrorPage />;
+  }
 
   return (
     <form className="container mx-auto mt-[47px] flex flex-col px-5 sm:px-6 max-w-[720px]">
